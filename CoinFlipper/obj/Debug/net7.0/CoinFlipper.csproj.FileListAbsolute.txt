@@ -1,0 +1,15 @@
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\bin\Debug\net7.0\CoinFlipper.exe
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\bin\Debug\net7.0\CoinFlipper.deps.json
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\bin\Debug\net7.0\CoinFlipper.runtimeconfig.json
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\bin\Debug\net7.0\CoinFlipper.dll
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\bin\Debug\net7.0\CoinFlipper.pdb
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.csproj.AssemblyReference.cache
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.AssemblyInfoInputs.cache
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.AssemblyInfo.cs
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.csproj.CoreCompileInputs.cache
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.dll
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\refint\CoinFlipper.dll
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.pdb
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\CoinFlipper.genruntimeconfig.cache
+C:\Users\eperr\Documents\Revature Notes\projects\PerryE\CoinFlipper\obj\Debug\net7.0\ref\CoinFlipper.dll
