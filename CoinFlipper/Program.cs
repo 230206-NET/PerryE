@@ -7,7 +7,7 @@ namespace CoinFlipper
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("Coin Flipper Starting ...");
-			bool coin = true;
+			bool coin;
 			var coinValue = new Random();
 			coin = (coinValue.Next(0, 3) > 1) ? true : false;
 			if (coin)
