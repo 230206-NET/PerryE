@@ -82,7 +82,7 @@ namespace Hangman{
             bool gameLost = false;
             Random r = new Random();
             Regex validCharacters = new Regex("^[a-z]$");
-            int guessesRemaining = r.Next(6);
+            int guessesRemaining = 6;
             char[] incorrectGuesses = new char[10];
             int incGuessesIndex = 0;
             for(int i = 0; i < wordToGuess.Length; i++){
