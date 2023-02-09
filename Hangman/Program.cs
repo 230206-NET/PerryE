@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 namespace Hangman{
     class Hangman{
         public string generateWord(){
@@ -79,15 +80,20 @@ namespace Hangman{
             bool[] letterGuessed = new bool[wordToGuess.Length];
             bool gameWon = false;
             bool gameLost = false;
-            int guessesRemaining = 6;
+            Random r = new Random();
+            Regex validCharacters = new Regex("^[a-z]$");
+            int guessesRemaining = r.Next(5, 10);
             for(int i = 0; i < wordToGuess.Length; i++){
                 Console.Write("_");
             }
             while (!gameWon && !gameLost){
-                Console.WriteLine("Please enter a letter to guess");
-                char guess = char.Parse(Console.ReadLine()!);
+                Console.WriteLine("\nPlease enter a letter to guess");
+                char guess;
+                bool guessFormat = char.TryParse(Console.ReadLine()!.ToLower(), out guess);
                 Console.WriteLine("");
                 bool wasCorrect = false;
+                Match match = validCharacters.Match("" + guess);
+                if (match.Success){
                 for(int i = 0; i < wordToGuess.Length; i++){
                     if (wordToGuess[i] == guess){
                         letterGuessed[i] = true;
@@ -101,6 +107,10 @@ namespace Hangman{
                             break;
                         }
                     }
+                } else{
+                    Console.WriteLine("Please enter a valid character");
+                }
+                
 
                 Console.WriteLine("\n");
                 showStatus(guessesRemaining);
@@ -130,14 +140,9 @@ namespace Hangman{
         }
 
         public static void Main(String[] args){
-            Console.WriteLine(" ____");
-            Console.WriteLine(" |   |");
-            Console.WriteLine(" |");
-            Console.WriteLine(" |");
-            Console.WriteLine(" |");
-            Console.WriteLine(" |");
-            Console.WriteLine("___");
+            
             Hangman hangman = new Hangman();
+            hangman.showStatus(6);
             hangman.hangman();
         }
     }
