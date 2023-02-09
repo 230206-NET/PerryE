@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 namespace Hangman{
     class Hangman{
         public string generateWord(){
-            string[] wordList = {"human", "coding", "object", "simple", "github", "solid", "principle", "random", "program", "class"};
+            string[] wordList = {"virginia", "california", "florida", "texas", "illinois", "washington", "nevada", "connecticut"};
             Random r = new Random();
-            int wordIndex = r.Next(10);
+            int wordIndex = r.Next(wordList.Length);
             return wordList[wordIndex];
         }
         public void showStatus(int guessNum){
@@ -82,7 +82,7 @@ namespace Hangman{
             bool gameLost = false;
             Random r = new Random();
             Regex validCharacters = new Regex("^[a-z]$");
-            int guessesRemaining = r.Next(5, 10);
+            int guessesRemaining = r.Next(6);
             char[] incorrectGuesses = new char[10];
             int incGuessesIndex = 0;
             for(int i = 0; i < wordToGuess.Length; i++){
