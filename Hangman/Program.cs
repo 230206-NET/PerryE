@@ -83,6 +83,8 @@ namespace Hangman{
             Random r = new Random();
             Regex validCharacters = new Regex("^[a-z]$");
             int guessesRemaining = r.Next(5, 10);
+            char[] incorrectGuesses = new char[10];
+            int incGuessesIndex = 0;
             for(int i = 0; i < wordToGuess.Length; i++){
                 Console.Write("_");
             }
@@ -99,8 +101,10 @@ namespace Hangman{
                         letterGuessed[i] = true;
                         wasCorrect = true;
                     }}
-                    if (!wasCorrect){
+                    if (!wasCorrect & !incorrectGuesses.Contains(guess)){
                         guessesRemaining--;
+                        incorrectGuesses[incGuessesIndex] = guess;
+                        incGuessesIndex++;
                         if(guessesRemaining == 0){
                             Console.WriteLine("You lose");
                             gameLost = true;
