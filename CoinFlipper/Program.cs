@@ -4,7 +4,7 @@ namespace CoinFlipper
 {
 	public class Flipper
 	{
-		public static void Main(string[] args)
+		public void flipCoin()
 		{
 			Console.WriteLine("Coin Flipper Starting ...");
 			bool coin;

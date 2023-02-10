@@ -1,6 +1,4 @@
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\bin\Debug\net7.0\HotOrCold.exe
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\bin\Debug\net7.0\HotOrCold.deps.json
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\bin\Debug\net7.0\HotOrCold.runtimeconfig.json
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\bin\Debug\net7.0\HotOrCold.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\bin\Debug\net7.0\HotOrCold.pdb
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7.0\HotOrCold.csproj.AssemblyReference.cache
@@ -11,5 +9,4 @@ C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7.0\HotOrCold.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7.0\refint\HotOrCold.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7.0\HotOrCold.pdb
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7.0\HotOrCold.genruntimeconfig.cache
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\HotOrCold\obj\Debug\net7.0\ref\HotOrCold.dll

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors", "..\RockPaperScissorsFinal\RockPaperScissors\RockPaperScissors.csproj", "{96584E97-9119-4867-9822-1549F59C2A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "firstDotNet", "..\firstDotNet\firstDotNet.csproj", "{54A67DF7-6CA7-4FD7-81D3-BF9BFD4A46DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetApp", "..\BudgetApp\BudgetApp.csproj", "{0BE01AA5-C00E-4145-963A-8A9298FF1451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinFlipper", "..\CoinFlipper\CoinFlipper.csproj", "{94188673-7383-4DB5-B8F1-A25667204E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotOrCold", "..\HotOrCold\HotOrCold.csproj", "{34730492-69BC-4AC9-9643-CA73D4C20BF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman", "..\Hangman\Hangman.csproj", "{3656C2A2-D29E-43DF-B22C-818BBD63E0FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96584E97-9119-4867-9822-1549F59C2A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96584E97-9119-4867-9822-1549F59C2A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96584E97-9119-4867-9822-1549F59C2A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96584E97-9119-4867-9822-1549F59C2A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A67DF7-6CA7-4FD7-81D3-BF9BFD4A46DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A67DF7-6CA7-4FD7-81D3-BF9BFD4A46DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A67DF7-6CA7-4FD7-81D3-BF9BFD4A46DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A67DF7-6CA7-4FD7-81D3-BF9BFD4A46DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BE01AA5-C00E-4145-963A-8A9298FF1451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BE01AA5-C00E-4145-963A-8A9298FF1451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BE01AA5-C00E-4145-963A-8A9298FF1451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BE01AA5-C00E-4145-963A-8A9298FF1451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94188673-7383-4DB5-B8F1-A25667204E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94188673-7383-4DB5-B8F1-A25667204E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94188673-7383-4DB5-B8F1-A25667204E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94188673-7383-4DB5-B8F1-A25667204E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34730492-69BC-4AC9-9643-CA73D4C20BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34730492-69BC-4AC9-9643-CA73D4C20BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34730492-69BC-4AC9-9643-CA73D4C20BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34730492-69BC-4AC9-9643-CA73D4C20BF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3656C2A2-D29E-43DF-B22C-818BBD63E0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3656C2A2-D29E-43DF-B22C-818BBD63E0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3656C2A2-D29E-43DF-B22C-818BBD63E0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3656C2A2-D29E-43DF-B22C-818BBD63E0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

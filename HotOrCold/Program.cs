@@ -4,7 +4,7 @@ namespace HotCold
 {
 	public class HotOrCold
 	{
-		public static void Main(String[] args){
+		public void runProgram(){
 		Console.WriteLine("The program has started");
 		var randNum = new Random();
 		int numToGuess = randNum.Next(20);
@@ -12,7 +12,7 @@ namespace HotCold
 		while (!guessedCorrect)
 		{
 			Console.WriteLine("Please enter a number to guess:");
-			int guessedNum = Int32.Parse(Console.ReadLine());
+			int guessedNum = Int32.Parse(Console.ReadLine()!);
 			if (guessedNum > numToGuess)
 			{
 				Console.WriteLine("You guessed to high. Please try again");

@@ -1,6 +1,4 @@
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\bin\Debug\net7.0\firstDotNet.exe
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\bin\Debug\net7.0\firstDotNet.deps.json
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\bin\Debug\net7.0\firstDotNet.runtimeconfig.json
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\bin\Debug\net7.0\firstDotNet.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\bin\Debug\net7.0\firstDotNet.pdb
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\net7.0\firstDotNet.csproj.AssemblyReference.cache
@@ -11,5 +9,4 @@ C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\ne
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\net7.0\firstDotNet.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\net7.0\refint\firstDotNet.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\net7.0\firstDotNet.pdb
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\net7.0\firstDotNet.genruntimeconfig.cache
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\firstDotNet\obj\Debug\net7.0\ref\firstDotNet.dll

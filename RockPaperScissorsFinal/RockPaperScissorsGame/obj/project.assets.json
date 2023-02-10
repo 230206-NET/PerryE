@@ -1,0 +1,89 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "RockPaperScissors/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/RockPaperScissors.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RockPaperScissors.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RockPaperScissors/1.0.0": {
+      "type": "project",
+      "path": "../RockPaperScissors/RockPaperScissors.csproj",
+      "msbuildProject": "../RockPaperScissors/RockPaperScissors.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "RockPaperScissors >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\eperr\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissorsGame\\RockPaperScissorsGame.csproj",
+      "projectName": "RockPaperScissorsGame",
+      "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissorsGame\\RockPaperScissorsGame.csproj",
+      "packagesPath": "C:\\Users\\eperr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissorsGame\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\eperr\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissors\\RockPaperScissors.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissors\\RockPaperScissors.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

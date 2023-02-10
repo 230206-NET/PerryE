@@ -1,6 +1,4 @@
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\bin\Debug\net7.0\BudgetApp.exe
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\bin\Debug\net7.0\BudgetApp.deps.json
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\bin\Debug\net7.0\BudgetApp.runtimeconfig.json
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\bin\Debug\net7.0\BudgetApp.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\bin\Debug\net7.0\BudgetApp.pdb
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7.0\BudgetApp.csproj.AssemblyReference.cache
@@ -11,5 +9,4 @@ C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7.0\BudgetApp.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7.0\refint\BudgetApp.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7.0\BudgetApp.pdb
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7.0\BudgetApp.genruntimeconfig.cache
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\BudgetApp\obj\Debug\net7.0\ref\BudgetApp.dll

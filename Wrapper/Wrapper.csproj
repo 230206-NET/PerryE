@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\RockPaperScissorsFinal\RockPaperScissors\RockPaperScissors.csproj" />
+    <ProjectReference Include="..\BudgetApp\BudgetApp.csproj" />
+    <ProjectReference Include="..\CoinFlipper\CoinFlipper.csproj" />
+    <ProjectReference Include="..\firstDotNet\firstDotNet.csproj" />
+    <ProjectReference Include="..\HotOrCold\HotOrCold.csproj" />
+    <ProjectReference Include="..\Hangman\Hangman.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

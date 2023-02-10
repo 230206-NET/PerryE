@@ -1,0 +1,184 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "BudgetApp/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/BudgetApp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BudgetApp.dll": {}
+        }
+      },
+      "CoinFlipper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/CoinFlipper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CoinFlipper.dll": {}
+        }
+      },
+      "firstDotNet/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/firstDotNet.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/firstDotNet.dll": {}
+        }
+      },
+      "Hangman/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Hangman.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Hangman.dll": {}
+        }
+      },
+      "HotOrCold/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/HotOrCold.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HotOrCold.dll": {}
+        }
+      },
+      "RockPaperScissors/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/RockPaperScissors.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RockPaperScissors.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BudgetApp/1.0.0": {
+      "type": "project",
+      "path": "../BudgetApp/BudgetApp.csproj",
+      "msbuildProject": "../BudgetApp/BudgetApp.csproj"
+    },
+    "CoinFlipper/1.0.0": {
+      "type": "project",
+      "path": "../CoinFlipper/CoinFlipper.csproj",
+      "msbuildProject": "../CoinFlipper/CoinFlipper.csproj"
+    },
+    "firstDotNet/1.0.0": {
+      "type": "project",
+      "path": "../firstDotNet/firstDotNet.csproj",
+      "msbuildProject": "../firstDotNet/firstDotNet.csproj"
+    },
+    "Hangman/1.0.0": {
+      "type": "project",
+      "path": "../Hangman/Hangman.csproj",
+      "msbuildProject": "../Hangman/Hangman.csproj"
+    },
+    "HotOrCold/1.0.0": {
+      "type": "project",
+      "path": "../HotOrCold/HotOrCold.csproj",
+      "msbuildProject": "../HotOrCold/HotOrCold.csproj"
+    },
+    "RockPaperScissors/1.0.0": {
+      "type": "project",
+      "path": "../RockPaperScissorsFinal/RockPaperScissors/RockPaperScissors.csproj",
+      "msbuildProject": "../RockPaperScissorsFinal/RockPaperScissors/RockPaperScissors.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "BudgetApp >= 1.0.0",
+      "CoinFlipper >= 1.0.0",
+      "Hangman >= 1.0.0",
+      "HotOrCold >= 1.0.0",
+      "RockPaperScissors >= 1.0.0",
+      "firstDotNet >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\eperr\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\Wrapper\\Wrapper.csproj",
+      "projectName": "Wrapper",
+      "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\Wrapper\\Wrapper.csproj",
+      "packagesPath": "C:\\Users\\eperr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\Wrapper\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\eperr\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\BudgetApp\\BudgetApp.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\BudgetApp\\BudgetApp.csproj"
+            },
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\CoinFlipper\\CoinFlipper.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\CoinFlipper\\CoinFlipper.csproj"
+            },
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\firstDotNet\\firstDotNet.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\firstDotNet\\firstDotNet.csproj"
+            },
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\Hangman\\Hangman.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\Hangman\\Hangman.csproj"
+            },
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\HotOrCold\\HotOrCold.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\HotOrCold\\HotOrCold.csproj"
+            },
+            "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissors\\RockPaperScissors.csproj": {
+              "projectPath": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\PerryE\\RockPaperScissorsFinal\\RockPaperScissors\\RockPaperScissors.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

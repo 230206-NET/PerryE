@@ -1,6 +1,6 @@
 ﻿using System;
 namespace Budget{
-    class BudgetApp{
+    public class BudgetApp{
         public record Expenses(){
             public int Amount{
                 get; set;
@@ -17,7 +17,7 @@ namespace Budget{
             prevArray = newArr;
             return prevArray;
         }
-        public static void Main(String[] args){
+        public void run(){
             Expenses[] expenses = new Expenses[2];
             Console.WriteLine("Please enter your initial budget");
             int budget = int.Parse(Console.ReadLine()!);
@@ -46,7 +46,7 @@ namespace Budget{
             }
             foreach(Expenses expense in expenses){
                 if (expense != null){
-                      expenditures+=expense.Amount;
+                    expenditures+=expense.Amount;
                 }
                 }
             Console.WriteLine($"Your budget was: {budget}");

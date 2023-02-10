@@ -1,6 +1,4 @@
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\bin\Debug\net7.0\Hangman.exe
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\bin\Debug\net7.0\Hangman.deps.json
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\bin\Debug\net7.0\Hangman.runtimeconfig.json
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\bin\Debug\net7.0\Hangman.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\bin\Debug\net7.0\Hangman.pdb
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0\Hangman.csproj.AssemblyReference.cache
@@ -11,5 +9,4 @@ C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0\Hangman.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0\refint\Hangman.dll
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0\Hangman.pdb
-C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0\Hangman.genruntimeconfig.cache
 C:\Users\eperr\Documents\Revature Notes\projects\PerryE\Hangman\obj\Debug\net7.0\ref\Hangman.dll
