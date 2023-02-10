@@ -7,5 +7,5 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = RockPaperScissors
-build_property.ProjectDir = C:\Users\eperr\Documents\Revature Notes\projects\PerryE\RockPaperScissors\
+build_property.RootNamespace = RockPaperScissorsGame
+build_property.ProjectDir = C:\Users\eperr\Documents\Revature Notes\projects\PerryE\RockPaperScissorsGame\
