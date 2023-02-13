@@ -5,7 +5,7 @@ namespace Budget{
             public int Amount{
                 get; set;
             }
-            public string Description{
+            public string? Description{
                 get; set;
             }
         }

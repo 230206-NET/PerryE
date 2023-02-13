@@ -15,7 +15,9 @@ public class Wrapper{
         Console.WriteLine("[4] Hot or Cold");
         Console.WriteLine("[5] Hangman");
         Console.WriteLine("[6] Rock Paper Scissors");
-        int input = int.Parse(Console.ReadLine()!);
+        int input;
+        bool successfulParse = int.TryParse(Console.ReadLine()!, out input);
+        if (successfulParse){
         switch (input){
             case 0:
                 Console.WriteLine("Leaving Application");
@@ -45,6 +47,10 @@ public class Wrapper{
         if (input == 0){
             break;
         }
+    }
+    else{
+        Console.WriteLine("Invalid input. Please try again");
+    }
     }
 }
 }
