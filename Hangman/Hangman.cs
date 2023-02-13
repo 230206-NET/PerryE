@@ -1,11 +1,11 @@
 ﻿using System.Text.RegularExpressions;
 namespace Hangman{
-    public class hangman{
+    public class HangMan{
         public void printOut(){
-            Console.WriteLine("Somrthing or other");
+            Console.WriteLine("Something or other");
         }
         
-        public string generateWord(){
+        internal string generateWord(){
             string[] wordList = {"virginia", "california", "florida", "texas", "illinois", "washington", "nevada", "connecticut"};
             Random r = new Random();
             int wordIndex = r.Next(wordList.Length);
@@ -78,71 +78,90 @@ namespace Hangman{
                 break;
             }
         }
+        internal bool evaluateInputValidity(char input){
+            Regex validCharacters = new Regex("^[a-z]$");
+            Match match = validCharacters.Match("" + input);
+            return match.Success;
+        }
+        internal bool evaluateInputTrue(char input, string wordToGuess, bool[] lettersGuessed){
+            bool guessCorrect = false;
+            for (int i = 0; i < wordToGuess.Length; i++){
+                if (wordToGuess[i] == input){
+                    guessCorrect = true;
+                    lettersGuessed[i] = true;
+                }
+            }
+            return guessCorrect;
+        }
+        internal int evaluateInputIncorrect(int guessesRemaining, int incorrectIndex, char[] incorrectGuesses, char guess){
+            guessesRemaining--;
+            incorrectGuesses[incorrectIndex] = guess;
+            return guessesRemaining;
+        }
+        internal bool evaluateLoss(int guessesRemaining, string wordToGuess){
+            if (guessesRemaining <= 0){
+                Console.WriteLine($"You lose, sorry. The word was {wordToGuess}");
+                return true;
+            }
+            return false;
+        }
+        internal bool evaluateWin(bool[] letterGuessed, string wordToGuess){
+            if (!letterGuessed.Contains(false)){
+            Console.WriteLine($"Congratulations! You won by guessing the word {wordToGuess}");
+            return true;
+            }
+            else return false;
+        }
+        internal string evaluateProgress(bool[] lettersGuessed, string wordToGuess){
+            string progress = "";
+            for (int i = 0; i < lettersGuessed.Length; i++){
+                if (lettersGuessed[i] == true){
+                    progress+= wordToGuess[i];
+                } else{
+                    progress+= "_";
+                }
+            }
+            return progress;
+        }
         public void playGame(){
             string wordToGuess = generateWord();
             bool[] letterGuessed = new bool[wordToGuess.Length];
-            bool gameWon = false;
-            bool gameLost = false;
             Random r = new Random();
-            Regex validCharacters = new Regex("^[a-z]$");
             int guessesRemaining = 6;
-            char[] incorrectGuesses = new char[10];
+            char[] incorrectGuesses = new char[6];
             int incGuessesIndex = 0;
             for(int i = 0; i < wordToGuess.Length; i++){
                 Console.Write("_");
             }
-            while (!gameWon && !gameLost){
+            while (true){
                 Console.WriteLine("\nPlease enter a letter to guess");
                 char guess;
                 bool guessFormat = char.TryParse(Console.ReadLine()!.ToLower(), out guess);
                 Console.WriteLine("");
                 bool wasCorrect = false;
-                Match match = validCharacters.Match("" + guess);
-                if (match.Success){
-                for(int i = 0; i < wordToGuess.Length; i++){
-                    if (wordToGuess[i] == guess){
-                        letterGuessed[i] = true;
-                        wasCorrect = true;
-                    }}
+                bool correctFormat = evaluateInputValidity(guess);
+                if (correctFormat){
+                    wasCorrect = evaluateInputTrue(guess, wordToGuess, letterGuessed);
                     if (!wasCorrect & !incorrectGuesses.Contains(guess)){
-                        guessesRemaining--;
-                        incorrectGuesses[incGuessesIndex] = guess;
+                        guessesRemaining = evaluateInputIncorrect(guessesRemaining, incGuessesIndex, incorrectGuesses, guess);
                         incGuessesIndex++;
-                        if(guessesRemaining == 0){
-                            Console.WriteLine("You lose");
-                            gameLost = true;
+                        if(evaluateLoss(guessesRemaining, wordToGuess)){
                             break;
                         }
                     }
                 } else{
                     Console.WriteLine("Please enter a valid character");
                 }
-                
-
                 Console.WriteLine("\n");
                 showStatus(guessesRemaining);
                 Console.WriteLine($"Guesses remaining: {guessesRemaining}");
-                for (int i = 0; i < wordToGuess.Length; i++){
-                    if (letterGuessed[i] == true){
-                        Console.Write(wordToGuess[i]);
-                    } else{
-                        Console.Write("_");
-                    }
-                }
-                if (!letterGuessed.Contains(false)){
-                    gameWon = true;
+                Console.WriteLine(evaluateProgress(letterGuessed, wordToGuess));
+                if (evaluateWin(letterGuessed, wordToGuess)){
+                    break;
                 }
 
             }
-        
-
             
-            if (gameLost){
-                Console.WriteLine($"Sorry, the word was {wordToGuess}");
-                showStatus(0);
-            } else {
-                Console.WriteLine($"\nYou won the game. The word was {wordToGuess}");
-            }
     
         }
 

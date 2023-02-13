@@ -2,7 +2,7 @@
 namespace RockPaperScissor;
 public class GameLogic
 {
-    public string makeChoice(){
+    private string makeChoice(){
         Random r = new Random();
         int numOption = r.Next(0, 3);
         string returnedChoice = "";
@@ -19,7 +19,7 @@ public class GameLogic
         }
         return returnedChoice;
     }
-    public string WinOrLose(string userChoice, string compChoice){
+    private string WinOrLose(string userChoice, string compChoice){
         string winOrLose = "";
         if ((userChoice == "Scissors" && compChoice == "Rock") || (userChoice == "Rock" && compChoice == "Paper") || (userChoice == "Paper" && compChoice == "Scissors")){
             winOrLose = $"Sorry, you lost. You chose {userChoice} and the computer chose {compChoice}";

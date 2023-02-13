@@ -35,7 +35,7 @@ public class Wrapper{
                 new HotOrCold().runProgram();
                 break;
             case 5:
-                new hangman().playGame();
+                new HangMan().playGame();
                 break;
             case 6:
                 new GameLogic().PlayGame();
