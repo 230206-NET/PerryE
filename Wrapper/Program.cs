@@ -7,7 +7,8 @@ using Hangman;
 
 public class Wrapper{
     public static void Main(string[] args){
-        Console.WriteLine("Which application would you like to open?");
+        while (true){
+        Console.WriteLine("Which application would you like to open? To leave, press 0");
         Console.WriteLine("[1] firstDotNet");
         Console.WriteLine("[2] Budget App");
         Console.WriteLine("[3] Coin Flipper");
@@ -16,6 +17,9 @@ public class Wrapper{
         Console.WriteLine("[6] Rock Paper Scissors");
         int input = int.Parse(Console.ReadLine()!);
         switch (input){
+            case 0:
+                Console.WriteLine("Leaving Application");
+                break;
             case 1:
                 new FirstDotNet();
                 break;
@@ -38,5 +42,9 @@ public class Wrapper{
                 Console.WriteLine("Invalid Selection: ");
                 break;
         }
+        if (input == 0){
+            break;
+        }
     }
+}
 }
