@@ -1,10 +1,10 @@
-namespace Model;
+namespace Models;
 public class Ticket{
-    int TicketNum{get; set;}
-    double Amount{get; set;}
-    DateOnly dateOfSubmission{get; set;}
-    int userId{get; set;}
-    string? status{get; set;}
-    string? Category{get; set;}
+    public int TicketNum{get; set;}
+    public double Amount{get; set;}
+    public DateOnly dateOfSubmission{get; set;}
+    public int userId{get; set;}
+    public string? status{get; set;}
+    public string? Category{get; set;}
 
 }

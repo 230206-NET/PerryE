@@ -1,7 +1,5 @@
-﻿
 namespace Models;
-public class Employee : IUser
-{
+public class Manager : IUser{
     public string Role{get; set;}
     public string HashedPass{get; set;}
     public double CellNumber{get; set;}
@@ -11,14 +9,9 @@ public class Employee : IUser
     public string UserName { get; set; }
     public string HashedPassword { get; set;}
 
-    public Employee(int UserId){
-        this.UserId = UserId;
-        //code to set the fields equal to the value from the database
-    }
-
-    public List<Ticket> getTickets(){
-        //Implement Code that finds all tickets with the user's UserId
+    public List<Ticket> getTickets()
+    {
+        //In here, insert code that will return the outstanding tickets of all employees
         return null!;
-
     }
 }
