@@ -12,7 +12,6 @@ public class Manager : IUser{
     public int UserId{get; set;}
     public string UserName { get; set; }
     public string HashedPassword { get; set;}
-
     public List<Ticket> getTickets()
     {
         //In here, insert code that will return the outstanding tickets of all employees
