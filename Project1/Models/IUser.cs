@@ -19,4 +19,7 @@ public class IUser
         CellNumber = cellNumber;
         Role = role;
     }
+    public IUser(){
+        
+    }
 }

@@ -10,13 +10,18 @@ public class Employee : IUser
     public string UserName { get; set; }
     public string HashedPassword { get; set;}
 
-
-
-
-    public Employee(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role) : base(userId, userName, hashedPassword, firstName, lastName, cellNumber, role)
+    public Employee(int userId, string cellNumber, string firstName, string lastName, string role, string userName, string hashedPassword) : base()
     {
-        
+        Role = role;
+        CellNumber = cellNumber;
+        FirstName = firstName;
+        LastName = lastName;
+        UserId = userId;
+        UserName = userName;
+        HashedPassword = hashedPassword;
     }
+
+
 
     public List<Ticket> getTickets(){
         //Implement Code that finds all tickets with the user's UserId

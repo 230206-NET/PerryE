@@ -17,4 +17,18 @@ public class FileStorage
         return JsonSerializer.Deserialize<List<IUser>>(fileContent);
         
     }
+    public static void updateUsersFromList(List<IUser> users){
+        string serialized = JsonSerializer.Serialize(users);
+        File.WriteAllText(filePath, serialized);
+    }
+    public static IUser getSpecifiedUser(string username, string password){
+        List<IUser> userList = getUser();
+        foreach (IUser user in userList){
+            if (user.UserName == username && user.HashedPassword == password){
+                return user;
+            }
+        }
+        return null;
+        
+    }
 }
