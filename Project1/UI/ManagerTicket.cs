@@ -23,6 +23,7 @@ private int SelectTicket()
     bool validTicket = int.TryParse(Console.ReadLine(), out ticketNum);
     if (!validTicket) 
     {
+        if (ticketNum == 0) break;
         Console.WriteLine("Invalid Input. Please Try Again");
         continue;
     }
