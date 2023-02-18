@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using DataAccess;
 using Models;
+using services;
 namespace UI;
 class LogInScreen{
     public LogInScreen(){
-        IUser logInInfo = getLoginInfo();
+        User logInInfo = getLoginInfo();
         bool loggedIn = false;
         if (logInInfo != null){
             loggedIn = true;
@@ -14,12 +15,16 @@ class LogInScreen{
             Console.WriteLine("Incorrect Credentials");
         }
     }
-    public IUser getLoginInfo(){
+    public User getLoginInfo(){
         Console.WriteLine("Please Enter your username");
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
-        IUser user = FileStorage.getSpecifiedUser(username, password);
-        return user;
+        User user = FileStorage.getSpecifiedUser(username);
+        if(PasswordHelper.VerifyPassword(password, user.HashedPassword)){
+            return user;
+        } else{
+            return null;
+        }
     }
 }

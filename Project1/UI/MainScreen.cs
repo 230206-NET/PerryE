@@ -1,7 +1,7 @@
 using Models;
 namespace UI;
 public class MainScreen{
-    public MainScreen(IUser user){
+    public MainScreen(User user){
         bool runProgram = true;
         while (runProgram){
         int choice;
@@ -17,6 +17,12 @@ public class MainScreen{
         string? option = Console.ReadLine();
         switch (option){
             case "1":
+                if (user.Role == "Employee"){
+                    new EmployeeTicketView(user.UserId);
+                }
+                if (user.Role == "Manager"){
+                    new ManagerTickets();
+                    }
                 break;
             case "2":
                 if (user.Role == "Manager"){
