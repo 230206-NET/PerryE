@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.Data.SqlClient;
 namespace services;
 public static class PasswordHelper
 {
@@ -67,4 +68,37 @@ public static class PasswordHelper
         }
         return diff == 0;
     }
+    public static bool Login(string username, string password)
+{
+    string connectionString = "Server=ticket-reimbursement.database.windows.net;Database=ticketsDB;User Id=ticket-admin;Password=Password1;";
+    string sql = "SELECT Hashed_Password FROM Users WHERE User_Name = @Username";
+    string hashedPassword = "";
+
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        SqlCommand command = new SqlCommand(sql, connection);
+        command.Parameters.AddWithValue("@Username", username);
+
+        connection.Open();
+
+        using (SqlDataReader reader = command.ExecuteReader())
+        {
+            if (reader.Read())
+            {
+                hashedPassword = reader.GetString(0);
+            }
+        }
+    }
+
+    // Compare the hashed password from the database with the user-entered password
+    if (!string.IsNullOrEmpty(hashedPassword))
+    {
+        if (VerifyPassword(password, hashedPassword))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
 }

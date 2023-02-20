@@ -21,8 +21,8 @@ class LogInScreen{
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
         User user = FileStorage.getSpecifiedUser(username);
-        if(PasswordHelper.VerifyPassword(password, user.HashedPassword)){
-            return user;
+        if (PasswordHelper.Login(username, password)){
+            return FileStorage.GetUserByUsername(username);
         } else{
             return null;
         }

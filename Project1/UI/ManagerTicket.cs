@@ -29,6 +29,7 @@ private int SelectTicket()
     }
     return ticketNum;
     }
+    return 0;
 }
 
 private void ApproveOrDeny(int ticketNum)
