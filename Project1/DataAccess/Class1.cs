@@ -32,10 +32,13 @@ public class FileStorage
         return null;
         
     }
+    public static User CreateNewUser(string userName, string hashedPassword, string fullName, string phoneNumber){
+        return null;
+    }
     public static User GetUserByUsername(string username)
 {
     User user = null;
-    string connectionString = "Server=tcp:ticket-reimbursement.database.windows.net,1433;Initial Catalog=ticketsDB;Persist Security Info=False;User ID=ticket-admin;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+    string connectionString = Secrets.getConnection();
 
     using (SqlConnection connection = new SqlConnection(connectionString))
     {
