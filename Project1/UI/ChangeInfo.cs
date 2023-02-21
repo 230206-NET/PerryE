@@ -15,13 +15,23 @@ public class ChangeInfo{
             Console.WriteLine("[0] Return to home screen");
             int choice;
             bool validInput = int.TryParse(Console.ReadLine(), out choice);
-            if (validInput && choice != 0){
+            if (validInput){
                 switch (choice){
                     case 1:
                         ChangeName(user);
                         break;
+                    case 2:
+                        ChangeUserName(user);
+                        break;
+                    case 3:
+                        ChangePhoneNumber(user);
+                        break;
+                    case  0:
+                        return;
+                    default:
+                        Console.WriteLine("Invalid Input. Please try again");
+                        break;
                 }
-
         }
 
         }
@@ -40,7 +50,8 @@ public class ChangeInfo{
             if (choice == 1){
                 user.FirstName = firstName;
                 user.LastName = lastName;
-                DBAccess.ChangeName(user.UserId, firstName, lastName);
+                string name = firstName + " " + lastName;
+                DBAccess.ChangeName(user.UserId, name);
                 break;
             }
             else{
@@ -49,5 +60,31 @@ public class ChangeInfo{
         }
 
 
+    }
+    private void ChangeUserName(User user){
+        Console.WriteLine("Please enter your desired new username");
+        string? username = Console.ReadLine();
+        while(!checkForUsername(username)){
+            Console.WriteLine("Username taken. Please try another username. Enter 0 to cancel");
+            username = Console.ReadLine();
+            if (username == "0"){
+                return;
+            }
+        }
+        user.UserName = username;
+        DBAccess.ChangeUserName(user.UserId, username);
+    }
+    private void ChangePhoneNumber(User user){
+        Console.WriteLine("Please enter your new Phone Number");
+        string? phoneNumber = Console.ReadLine();
+        user.CellNumber = phoneNumber;
+        DBAccess.ChangePhoneNumber(user.UserId, phoneNumber);
+    }
+        private bool checkForUsername(string userName){
+        if (DBAccess.GetUserByUsername(userName) == null){
+        return true;
+        } else{
+            return false;
+        }
     }
 }

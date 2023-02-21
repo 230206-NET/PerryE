@@ -18,16 +18,18 @@ public class MainScreen{
         switch (option){
             case "1":
                 if (user.Role == "Employee"){
-                    new EmployeeTicketView(user.UserId);
+                    new EmployeeTicketView(user);
                 }
                 if (user.Role == "Manager"){
-                    new ManagerTickets();
+                    new ManagerTickets(user);
                     }
                 break;
             case "2":
                 if (user.Role == "Manager"){
-                    new EmployeeAdminScreen();
+                    new EmployeeAdminScreen(user);
                     break;
+                } else{
+                    new SubmitTicket(user);
                 }
                 break;
             case "3":
