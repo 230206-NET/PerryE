@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Models;
 using System.Data.SqlClient;
+using System.Data;
 namespace DataAccess;
 public class FileStorage
 {
@@ -32,15 +33,26 @@ public class FileStorage
         return null;
         
     }
-    public static User CreateNewUser(string userName, string hashedPassword, string fullName, string phoneNumber){
+    public static User CreateNewUser(string username, string hashedPassword, string fullName, string phoneNumber){
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            connection.Open();
+            string query = "INSERT INTO Users(User_Name, Hashed_Password, Full_Name, Phone_Number, User_Position) VALUES (@username, @hashedPassword, @fullName, @phoneNumber, 'Employee')";
+            using (SqlCommand command = new SqlCommand(query, connection)){
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@hashedPassword", hashedPassword);
+                command.Parameters.AddWithValue("@fullName", fullName);
+                command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                command.ExecuteNonQuery();
+            }
+        }
         return null;
     }
     public static User GetUserByUsername(string username)
 {
     User user = null;
-    string connectionString = Secrets.getConnection();
 
-    using (SqlConnection connection = new SqlConnection(connectionString))
+    using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
         string query = "SELECT User_ID, User_Name, Hashed_Password, Full_Name, Phone_Number, User_Position FROM Users WHERE User_Name = @username";

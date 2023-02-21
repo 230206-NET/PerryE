@@ -6,7 +6,7 @@ namespace UI;
 public class Register{
     public bool createNewUser(string firstName, string lastName, string username, string password, string phoneNumber){
         //Write code here that allows for the user to be created
-        FileStorage.createUser(new User(15, username, password, firstName, lastName, phoneNumber, "Employee"));
+        FileStorage.CreateNewUser(username, password, firstName + " " + lastName, phoneNumber);
         return true;
     }
     public bool checkForUsername(string userName){
