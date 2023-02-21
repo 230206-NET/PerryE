@@ -15,14 +15,13 @@ class LogInScreen{
             Console.WriteLine("Incorrect Credentials");
         }
     }
-    public User getLoginInfo(){
+    private User getLoginInfo(){
         Console.WriteLine("Please Enter your username");
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
-        User user = FileStorage.getSpecifiedUser(username);
         if (PasswordHelper.Login(username, password)){
-            return FileStorage.GetUserByUsername(username);
+            return DBAccess.GetUserByUsername(username);
         } else{
             return null;
         }

@@ -13,7 +13,7 @@ public class MainScreen{
             Console.WriteLine("\n[2] Employee Management");
         }
         Console.WriteLine("\n[3] Edit Personal Information");
-        Console.WriteLine("\n[4] Exit Application");
+        Console.WriteLine("\n[0] Exit Application");
         string? option = Console.ReadLine();
         switch (option){
             case "1":
@@ -31,8 +31,9 @@ public class MainScreen{
                 }
                 break;
             case "3":
+                new ChangeInfo(user);
                 break;
-            case "4":
+            case "0":
                 runProgram = false;
                 break;
             default:

@@ -8,7 +8,7 @@ public EmployeeAdminScreen(){
     Console.WriteLine("Welcome to the Employee Admin Screen");
     Console.WriteLine("User ID | User Full Name | User username");
     Console.WriteLine("==========================================\n");
-    List<User> employees = Service.filterForEmployees();
+    List<User> employees = DBAccess.getEmployees();
     foreach (User employee in employees){
         Console.WriteLine($"{employee.UserId} | {employee.FirstName} {employee.LastName} | {employee.UserName}");
     }
@@ -22,7 +22,7 @@ public EmployeeAdminScreen(){
     else if (option == false){ 
         Console.WriteLine("Invalid input");
     } else{
-        Service.makeEmployeeManager(chosen);
+        DBAccess.MakeEmployeeManager(chosen);
     }
     }
 
