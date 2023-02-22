@@ -17,10 +17,12 @@ class ManagerTickets{
 private int SelectTicket()
 {
     while(true){
+        Console.WriteLine("#  |  Username  |  Submission Date  |  Amount  |  Category");
+        Console.WriteLine("===========================================================");
     int ticketNum;
     List<Ticket> unapprovedTickets = DBAccess.GetAllUnapprovedTickets();
     foreach (Ticket ticket in unapprovedTickets){
-        Console.WriteLine(ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Amount + " " + ticket.Category);
+        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category);
     }
     Console.WriteLine("Please Select a ticket number to approve or deny. To exit, please enter 0");
     bool validTicket = int.TryParse(Console.ReadLine(), out ticketNum);
