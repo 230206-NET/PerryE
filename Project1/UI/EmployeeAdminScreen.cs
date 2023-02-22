@@ -3,7 +3,7 @@ using DataAccess;
 namespace UI;
 using services;
 public class EmployeeAdminScreen{
-public EmployeeAdminScreen(){
+public EmployeeAdminScreen(User user){
     while (true){
     Console.WriteLine("Welcome to the Employee Admin Screen");
     Console.WriteLine("User ID | User Full Name | User username");

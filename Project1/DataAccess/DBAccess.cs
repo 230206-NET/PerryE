@@ -136,4 +136,99 @@ public class DBAccess
 
     return user;
 }
+    public static void CreateNewTicket(double amount, string description, int userId, string userName){
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            connection.Open();
+            string query = "INSERT INTO Tickets(Ticket_Category, Ticket_Amount, Ticket_User_Id, Ticket_Submitter_Name, Ticket_Date, Ticket_Status) VALUES(@Category, @Amount, @UserId, @userName, @Date, 'Pending')";
+            using (SqlCommand command = new SqlCommand(query, connection)){
+                command.Parameters.AddWithValue("@Category", description);
+                command.Parameters.AddWithValue("@Amount", amount);
+                command.Parameters.AddWithValue("@UserId", userId);
+                command.Parameters.AddWithValue("@userName", userName);
+                command.Parameters.AddWithValue("@Date", DateTime.Today);
+                command.ExecuteNonQuery();
+            }
+        }
+        return;
+    }
+    public static List<Ticket> GetUserTicketsByStatus(int userId, string status)
+    {
+        List<Ticket> tickets = new List<Ticket>();
+
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            Ticket ticket = null;
+            connection.Open();
+            string query = "SELECT * FROM Tickets WHERE Ticket_User_Id = @UserId AND Ticket_Status = @status";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserId", userId);
+                command.Parameters.AddWithValue("@status", status);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int ticketNum = reader.GetInt32(0);
+                        string category = reader.GetString(1);
+                        double amount = (double) reader.GetDecimal(2);
+                        string userName = reader.GetString(4);
+                        DateTime dateOfSubmission = reader.GetDateTime(5).Date;
+
+                         tickets.Add(new Ticket(ticketNum, amount, dateOfSubmission, userId, userName, status, category));
+                    }
+                }
+        }
+        return tickets;
+    }
+}
+    public static List<Ticket> GetAllUnapprovedTickets()
+    {
+        List<Ticket> tickets = new List<Ticket>();
+
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            Ticket ticket = null;
+            connection.Open();
+            string query = "SELECT * FROM Tickets WHERE Ticket_Status = 'Pending'";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        int ticketNum = reader.GetInt32(0);
+                        string category = reader.GetString(1);
+                        double amount = (double) reader.GetDecimal(2);
+                        int userId = reader.GetInt32(3);
+                        string userName = reader.GetString(4);
+                        DateTime dateOfSubmission = reader.GetDateTime(5).Date;
+
+                         tickets.Add(new Ticket(ticketNum, amount, dateOfSubmission, userId, userName, "Pending", category));
+                    }
+                }
+        }
+        return tickets;
+    }
+}
+    public static void DecideOnTicket(int ticketId, string newStatus)
+    {
+        List<Ticket> tickets = new List<Ticket>();
+
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            Ticket ticket = null;
+            connection.Open();
+            string query = "Update Tickets SET Ticket_Status = @newStatus WHERE Ticket_Num = @ticketId";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@newStatus", newStatus);
+                command.Parameters.AddWithValue("@ticketId", ticketId);
+
+                command.ExecuteNonQuery();
+        }
+    }
+}
 }

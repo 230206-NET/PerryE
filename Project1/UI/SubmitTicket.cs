@@ -8,6 +8,12 @@ public class SubmitTicket{
         Console.WriteLine("Please enter the amount for your ticket");
         double ticketAmount;
         bool parseSuccess = double.TryParse(Console.ReadLine(), out ticketAmount);
-        
+        if (parseSuccess){
+            Console.WriteLine("Please enter the category of ticket");
+            string? category = Console.ReadLine();
+            DBAccess.CreateNewTicket(ticketAmount, category, user.UserId, user.UserName);
+        } else{
+            Console.WriteLine("Invalid Input. Exiting Operation");
+        }
     }
 }
