@@ -89,7 +89,7 @@ public class DBAccess
     }
 
 
-    public static User CreateNewUser(string username, string hashedPassword, string fullName, string phoneNumber){
+    public static void CreateNewUser(string username, string hashedPassword, string fullName, string phoneNumber){
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
             connection.Open();
@@ -102,11 +102,10 @@ public class DBAccess
                 command.ExecuteNonQuery();
             }
         }
-        return null;
     }
-    public static User GetUserByUsername(string username)
+    public static User? GetUserByUsername(string username)
 {
-    User user = null;
+    User? user = null;
 
     using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
@@ -158,7 +157,6 @@ public class DBAccess
 
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
-            Ticket ticket = null;
             connection.Open();
             string query = "SELECT * FROM Tickets WHERE Ticket_User_Id = @UserId AND Ticket_Status = @status";
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -189,7 +187,6 @@ public class DBAccess
 
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
-            Ticket ticket = null;
             connection.Open();
             string query = "SELECT * FROM Tickets WHERE Ticket_Status = 'Pending'";
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -219,7 +216,6 @@ public class DBAccess
 
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
-            Ticket ticket = null;
             connection.Open();
             string query = "Update Tickets SET Ticket_Status = @newStatus WHERE Ticket_Num = @ticketId";
             using (SqlCommand command = new SqlCommand(query, connection))
