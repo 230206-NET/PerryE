@@ -41,9 +41,17 @@ public class ChangeInfo{
         bool correctInfo = false;
         while(!correctInfo){
             Console.WriteLine("Please write your first name");
-            string? firstName = Console.ReadLine();
+            string? firstName = Console.ReadLine().Trim();
+            while (string.IsNullOrEmpty(firstName)){
+                Console.WriteLine("Please enter a valid first name");
+                firstName = Console.ReadLine()!.Trim();
+            }
             Console.WriteLine("Please write you last name");
-            string? lastName = Console.ReadLine();
+            string? lastName = Console.ReadLine().Trim();
+            while (string.IsNullOrEmpty(lastName)){
+                Console.WriteLine("Please enter a valid last name");
+                lastName = Console.ReadLine().Trim();
+            }
             Console.WriteLine("So your name is {0} {1}? Press 1 for yes, 2 for no", firstName, lastName);
             int choice;
             bool success = int.TryParse(Console.ReadLine(), out choice);
@@ -64,8 +72,8 @@ public class ChangeInfo{
     private void ChangeUserName(User user){
         Console.WriteLine("Please enter your desired new username");
         string? username = Console.ReadLine();
-        while(!checkForUsername(username)){
-            Console.WriteLine("Username taken. Please try another username. Enter 0 to cancel");
+        while(string.IsNullOrEmpty(username) || !checkForUsername(username)){
+            Console.WriteLine("Username empty or taken. Please try again. Press 0 to exit");
             username = Console.ReadLine();
             if (username == "0"){
                 return;
@@ -77,6 +85,10 @@ public class ChangeInfo{
     private void ChangePhoneNumber(User user){
         Console.WriteLine("Please enter your new Phone Number");
         string? phoneNumber = Console.ReadLine();
+        while(string.IsNullOrEmpty(phoneNumber)){
+            Console.WriteLine("Please enter a valid phone number");
+            phoneNumber = Console.ReadLine();
+        }
         user.CellNumber = phoneNumber;
         DBAccess.ChangePhoneNumber(user.UserId, phoneNumber);
     }

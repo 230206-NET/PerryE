@@ -227,4 +227,65 @@ public class DBAccess
         }
     }
 }
+    public static List<Ticket> GetAllTicketsFromCategory(string category)
+    {
+        List<Ticket> tickets = new List<Ticket>();
+
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            connection.Open();
+            string query = "SELECT * FROM Tickets WHERE Ticket_Category LIKE %@category%";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@category", category);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        int ticketNum = reader.GetInt32(0);
+                        double amount = (double) reader.GetDecimal(2);
+                        int userId = reader.GetInt32(3);
+                        string userName = reader.GetString(4);
+                        DateTime dateOfSubmission = reader.GetDateTime(5).Date;
+                        string status = reader.GetString(6);
+
+                         tickets.Add(new Ticket(ticketNum, amount, dateOfSubmission, userId, userName, status, category));
+                    }
+                }
+        }
+        return tickets;
+    }
+}
+    public static List<Ticket> GetUserTicketsFromCategory(int userId, string category)
+    {
+        List<Ticket> tickets = new List<Ticket>();
+
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+        {
+            connection.Open();
+            string query = "SELECT * FROM Tickets WHERE Ticket_Category Like @category AND Ticket_User_Id = @userId";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@category", "%" + category + "%");
+                command.Parameters.AddWithValue("@userId", userId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        int ticketNum = reader.GetInt32(0);
+                        string fullCategory = reader.GetString(1);
+                        double amount = (double) reader.GetDecimal(2);
+                        string userName = reader.GetString(4);
+                        DateTime dateOfSubmission = reader.GetDateTime(5).Date;
+                        string status = reader.GetString(6);
+
+                         tickets.Add(new Ticket(ticketNum, amount, dateOfSubmission, userId, userName, status, fullCategory));
+                    }
+                }
+        }
+        return tickets;
+    }
+}
 }

@@ -8,7 +8,7 @@ public class TicketHelper{
     public static void denyTicket(int ticketNum){
 
     }
-    public static void displayCurrentEmployeePendingTickets(int userId){
+    public static void displayTicketFromCategory(int userId, string category){
 
     }
     public static void displayAllPendingTickets(){
