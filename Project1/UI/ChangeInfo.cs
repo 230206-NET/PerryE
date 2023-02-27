@@ -4,15 +4,7 @@ namespace UI;
 public class ChangeInfo{
     public ChangeInfo(User user){
         while (true){
-            Console.WriteLine("Name: " + user.FirstName + " " + user.LastName);
-            Console.WriteLine("Username: " + user.UserName);
-            Console.WriteLine("Phone Number: " + user.CellNumber);
-            Console.WriteLine("Role: " + user.Role);
-            Console.WriteLine("What would you like to change?");
-            Console.WriteLine("[1] Name");
-            Console.WriteLine("[2] Username");
-            Console.WriteLine("[3] Phone Number");
-            Console.WriteLine("[0] Return to home screen");
+            displayOptions();
             int choice;
             bool validInput = int.TryParse(Console.ReadLine(), out choice);
             if (validInput){
@@ -35,6 +27,18 @@ public class ChangeInfo{
         }
 
         }
+
+    }
+    private void displayOptions(){
+            Console.WriteLine("Name: " + user.FirstName + " " + user.LastName);
+            Console.WriteLine("Username: " + user.UserName);
+            Console.WriteLine("Phone Number: " + user.CellNumber);
+            Console.WriteLine("Role: " + user.Role);
+            Console.WriteLine("What would you like to change?");
+            Console.WriteLine("[1] Name");
+            Console.WriteLine("[2] Username");
+            Console.WriteLine("[3] Phone Number");
+            Console.WriteLine("[0] Return to home screen");
 
     }
     private void ChangeName(User user){
