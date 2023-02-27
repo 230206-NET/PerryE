@@ -10,7 +10,7 @@ public class DBAccess
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
-        string query = "Update Users SET User_Role = 'Manager' WHERE User_ID = @UserId";
+        string query = "Update Users SET User_Position = 'Manager' WHERE User_ID = @UserId";
         using (SqlCommand command = new SqlCommand(query, connection))
         {
             command.Parameters.AddWithValue("@UserId", id);
