@@ -20,27 +20,37 @@ class EmployeeTicketView{
         bool madeChoice = int.TryParse(option, out choice);
         switch (choice){
             case 1:
+                Console.WriteLine("\n");
+                        Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+        Console.WriteLine("===========================================================");
                 foreach(Ticket ticket in DBAccess.GetUserTicketsByStatus(user.UserId, "Pending")){
-                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Amount);
+                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
 
                 break;
             case 2:
-                Console.WriteLine("Fill in with past tickets view");
+            Console.WriteLine("\n");
+            Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+            Console.WriteLine("===========================================================");
                 foreach(Ticket ticket in DBAccess.GetUserTicketsByStatus(user.UserId, "Approved")){
-                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Amount);
+                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
                 break;
             case 3:
+                Console.WriteLine("\n");
+                Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+                Console.WriteLine("===========================================================");
                 foreach(Ticket ticket in DBAccess.GetUserTicketsByStatus(user.UserId, "Denied")){
-                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Amount);
+                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
                 break;
                 case 4:
-                    Console.WriteLine("Please enter the category you would like to search for");
-                    Console.WriteLine("\n");
-                    foreach(Ticket ticket in DBAccess.GetUserTicketsFromCategory(user.UserId, Console.ReadLine())){
-                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount);
+                    Console.WriteLine("Please enter category. \n");
+                    string category = Console.ReadLine()!;
+                    Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+                    Console.WriteLine("===========================================================");
+                    foreach(Ticket ticket in DBAccess.GetUserTicketsFromCategory(user.UserId, category)){
+                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                     }
                     break;
             case 0:

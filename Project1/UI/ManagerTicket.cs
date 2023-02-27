@@ -25,7 +25,7 @@ class ManagerTickets{
                     int numUserId;
                     bool userChoice = int.TryParse(userId, out numUserId);
                     foreach (Ticket ticket in DBAccess.GetSpecifiedUserTickets(numUserId)){
-                        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category);
+                        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category + " | " + ticket.status);
 
                     }
                     Console.WriteLine("Please select a ticket to approve or deny. To exit, press 0");
@@ -42,7 +42,7 @@ class ManagerTickets{
                 case 3:
                     Console.WriteLine("Please enter the category you would like to search for");
                     foreach(Ticket ticket in DBAccess.GetAllTicketsFromCategory(Console.ReadLine())){
-                        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category);
+                        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category + " | " + ticket.status);
                     }
                     Console.WriteLine("Please select a ticket to approve or deny. To exit, press 0");
                     string ticketNumber = Console.ReadLine()!;

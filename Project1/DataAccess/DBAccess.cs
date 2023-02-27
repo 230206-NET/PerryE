@@ -166,7 +166,7 @@ public class DBAccess
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         int ticketNum = reader.GetInt32(0);
                         string category = reader.GetString(1);
