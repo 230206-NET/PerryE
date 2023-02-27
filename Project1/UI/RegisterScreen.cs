@@ -23,11 +23,9 @@ public class Register{
             Console.WriteLine("Username taken. Please try another username");
             username = Console.ReadLine()!;
         }
-        Console.WriteLine("Please Enter your Password");
-        //Eventually, add code here to hash the password before passing it to the database
+        Console.WriteLine("Please Enter your Password"); 
         string password = Console.ReadLine()!;
         Console.WriteLine("Please Enter your Phone Number (No parentheses, dashes or spaces)");
-        //Needs a RegEx to ensure the phone number is valid
         string phoneNumber = Console.ReadLine()!;
         string hashedPassword = PasswordHelper.HashAndSaltPassword(password);
         DBAccess.CreateNewUser(username, hashedPassword, firstName + " " + lastName, phoneNumber);
