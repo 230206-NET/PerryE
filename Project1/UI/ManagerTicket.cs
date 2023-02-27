@@ -8,9 +8,58 @@ class ManagerTickets{
     public ManagerTickets(User user)
 {
     while(true){
-        int ticketNum = SelectTicket();
-        if (ticketNum == 0) break;
-        ApproveOrDeny(ticketNum);
+        Console.WriteLine("Press 1 to view all pending tickets. Press 2 to view tickets by user Id. Press 3 to view tickets by category. Press 0 to return to main menu.");
+        int choice;
+        string input = Console.ReadLine()!;
+        bool successfulRead = int.TryParse(input, out choice);
+        if (successfulRead && choice != 0){
+            switch (choice){
+                case 1:
+                    int ticketNum = SelectTicket();
+                    if (ticketNum == 0) break;
+                    ApproveOrDeny(ticketNum);
+                    break;
+                case 2:
+                    Console.WriteLine("Please enter a user Id to search for all their tickets");
+                    string userId = Console.ReadLine()!;
+                    int numUserId;
+                    bool userChoice = int.TryParse(userId, out numUserId);
+                    foreach (Ticket ticket in DBAccess.GetSpecifiedUserTickets(numUserId)){
+                        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category);
+
+                    }
+                    Console.WriteLine("Please select a ticket to approve or deny. To exit, press 0");
+                    string ticketNumeric = Console.ReadLine()!;
+                    if (ticketNumeric == "0"){
+                        break;
+                    }
+                    else{
+                        int ticket;
+                        int.TryParse(ticketNumeric, out ticket);
+                        ApproveOrDeny(ticket);
+                        break;
+                    }
+                case 3:
+                    Console.WriteLine("Please enter the category you would like to search for");
+                    foreach(Ticket ticket in DBAccess.GetAllTicketsFromCategory(Console.ReadLine())){
+                        Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category);
+                    }
+                    Console.WriteLine("Please select a ticket to approve or deny. To exit, press 0");
+                    string ticketNumber = Console.ReadLine()!;
+                    if (ticketNumber == "0"){
+                        break;
+                    }
+                    else{
+                        int ticket;
+                        int.TryParse(ticketNumber, out ticket);
+                        ApproveOrDeny(ticket);
+                        break;
+                    }
+            }
+
+        } else if (choice == 0){
+            break;
+        }
     }
 }
 
