@@ -4,32 +4,35 @@ namespace UI;
 public class ChangeInfo{
     public ChangeInfo(User user){
         while (true){
-            displayOptions();
+            displayOptions(user);
             int choice;
             bool validInput = int.TryParse(Console.ReadLine(), out choice);
-            if (validInput){
-                switch (choice){
+            if(makeChoice(choice, user) == 0) return;   
+        }
+
+        }
+
+    
+    private int makeChoice(int selection, User user){
+                switch (selection){
                     case 1:
                         ChangeName(user);
-                        break;
+                        return 1;
                     case 2:
                         ChangeUserName(user);
-                        break;
+                        return 1;
                     case 3:
                         ChangePhoneNumber(user);
-                        break;
+                        return 1;
                     case  0:
-                        return;
+                        return 0;
                     default:
                         Console.WriteLine("Invalid Input. Please try again");
-                        break;
+                        return 1;
                 }
-        }
-
-        }
 
     }
-    private void displayOptions(){
+    private void displayOptions(User user){
             Console.WriteLine("Name: " + user.FirstName + " " + user.LastName);
             Console.WriteLine("Username: " + user.UserName);
             Console.WriteLine("Phone Number: " + user.CellNumber);
@@ -63,7 +66,7 @@ public class ChangeInfo{
                 user.FirstName = firstName;
                 user.LastName = lastName;
                 string name = firstName + " " + lastName;
-                DBAccess.ChangeName(user.UserId, name);
+                DBAccess.changeUserField("User_Name", user.UserId, name);
                 break;
             }
             else{
@@ -84,7 +87,7 @@ public class ChangeInfo{
             }
         }
         user.UserName = username;
-        DBAccess.ChangeUserName(user.UserId, username);
+        DBAccess.changeUserField("User_Name", user.UserId, username);
     }
     private void ChangePhoneNumber(User user){
         Console.WriteLine("Please enter your new Phone Number");
@@ -94,7 +97,7 @@ public class ChangeInfo{
             phoneNumber = Console.ReadLine();
         }
         user.CellNumber = phoneNumber;
-        DBAccess.ChangePhoneNumber(user.UserId, phoneNumber);
+        DBAccess.changeUserField("Phone_Number", user.UserId, phoneNumber);
     }
         private bool checkForUsername(string userName){
         if (DBAccess.GetUserByUsername(userName) == null){

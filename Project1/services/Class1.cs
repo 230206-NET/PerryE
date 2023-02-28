@@ -3,8 +3,12 @@ using DataAccess;
 namespace services;
 public class LogInHelper
 {
-    public static LogInHelper(string username, string password){
-        
+    public static User? LogIn(string username, string password){
+        if (PasswordHelper.Login(username, password)){
+            return DBAccess.GetUserByUsername(username);
+        } else{
+            return null;
+        }
     }
 
 }

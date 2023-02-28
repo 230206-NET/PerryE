@@ -22,7 +22,7 @@ public EmployeeAdminScreen(User user){
     else if (option == false){ 
         Console.WriteLine("Invalid input");
     } else{
-        DBAccess.MakeEmployeeManager(chosen);
+        DBAccess.changeUserField("User_Position", chosen, "Manager");
     }
     }
 
