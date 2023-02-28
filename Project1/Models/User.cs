@@ -19,7 +19,7 @@ public class User
         CellNumber = cellNumber;
         Role = role;
     }
-    public User(){
-        
+    public void DisplayOptions(){
+        Console.WriteLine("Please select");
     }
 }
