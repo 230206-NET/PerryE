@@ -1,5 +1,5 @@
-﻿namespace Models;
-public class User
+namespace Models;
+public class Manager : IUser
 {
     public int UserId{get; set;}
     public string UserName{get;set;}
@@ -9,7 +9,7 @@ public class User
     public string CellNumber{get; set;}
     public string Role {get; set;}
 
-    public User(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
+    public Manager(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
     {
         UserId = userId;
         UserName = userName;
@@ -20,6 +20,6 @@ public class User
         Role = role;
     }
     public void DisplayOptions(){
-        Console.WriteLine("Please select");
+        Console.WriteLine("Something");
     }
 }

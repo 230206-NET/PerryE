@@ -6,7 +6,7 @@ namespace DataAccess;
 public class DBAccess
 {
     public static void MakeEmployeeManager(int id){
-        List<User> userList = new List<User>();
+        List<IUser> userList = new List<IUser>();
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
@@ -19,8 +19,8 @@ public class DBAccess
     }
     }
 
-    public static List<User> getEmployees(){
-        List<User> userList = new List<User>();
+    public static List<IUser> getEmployees(){
+        List<IUser> userList = new List<IUser>();
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
@@ -40,7 +40,7 @@ public class DBAccess
                     string userPosition = reader.GetString(5);
                     string[] name = fullName.Split(' ').Select(word => word.Trim()).ToArray();
 
-                    userList.Add(new User(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition));
+                    userList.Add(new Employee(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition));
                 }
             }
         }
@@ -64,10 +64,10 @@ public class DBAccess
             }
         }
     }
-    public static User? GetUserByUsername(string username)
+    public static IUser? GetUserByUsername(string username)
 {
-    User? user = null;
 
+        IUser user = null;
     using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
@@ -87,13 +87,15 @@ public class DBAccess
                     string phoneNumber = reader.GetString(4);
                     string userPosition = reader.GetString(5);
                     string[] name = fullName.Split(' ').Select(word => word.Trim()).ToArray();
-
-                    user = new User(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
+                    if (userPosition == "Manager"){
+                        user = new Manager(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
+                    } else{
+                        user = new Employee(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
+                    }
                 }
             }
         }
     }
-
     return user;
 }
     public static void CreateNewTicket(double amount, string description, int userId, string userName){

@@ -5,7 +5,7 @@ using DataAccess;
 namespace UI;
 class ManagerTickets{
     private int UserId {get; set;}
-    public ManagerTickets(User user)
+    public ManagerTickets(IUser user)
 {
     while(true){
         Console.WriteLine("Press 1 to view all pending tickets. Press 2 to view tickets by user Id. Press 3 to view tickets by category. Press 0 to return to main menu.");

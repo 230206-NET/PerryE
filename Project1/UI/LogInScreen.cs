@@ -5,7 +5,7 @@ using services;
 namespace UI;
 class LogInScreen{
     public LogInScreen(){
-        User? logInInfo = getLoginInfo();
+        IUser? logInInfo = getLoginInfo();
         bool loggedIn = (logInInfo != null);
         if (loggedIn){
             new MainScreen(logInInfo);
@@ -14,7 +14,7 @@ class LogInScreen{
             Console.WriteLine("Incorrect Credentials");
         }
     }
-    private User? getLoginInfo(){
+    private IUser? getLoginInfo(){
         Console.WriteLine("Please Enter your username");
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
