@@ -1,5 +1,5 @@
 ﻿namespace Models;
-public class User
+public interface IUser
 {
     public int UserId{get; set;}
     public string UserName{get;set;}
@@ -19,7 +19,6 @@ public class User
         CellNumber = cellNumber;
         Role = role;
     }
-    public void DisplayOptions(){
-        Console.WriteLine("Please select");
-    }
+    public void DisplayOptions();
+    
 }

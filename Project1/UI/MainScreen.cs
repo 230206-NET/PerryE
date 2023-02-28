@@ -1,7 +1,7 @@
 using Models;
 namespace UI;
 public class MainScreen{
-    public MainScreen(User user){
+    public MainScreen(IUser user){
         bool runProgram = true;
         while (runProgram){
         int choice;
