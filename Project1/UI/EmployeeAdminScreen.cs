@@ -3,13 +3,13 @@ using DataAccess;
 namespace UI;
 using services;
 public class EmployeeAdminScreen{
-public EmployeeAdminScreen(User user){
+public EmployeeAdminScreen(IUser user){
     while (true){
     Console.WriteLine("Welcome to the Employee Admin Screen");
     Console.WriteLine("User ID | User Full Name | User username");
     Console.WriteLine("==========================================\n");
-    List<User> employees = DBAccess.getEmployees();
-    foreach (User employee in employees){
+    List<IUser> employees = DBAccess.getEmployees();
+    foreach (IUser employee in employees){
         Console.WriteLine($"{employee.UserId} | {employee.FirstName} {employee.LastName} | {employee.UserName}");
     }
     Console.WriteLine("If you would like to make an employee a manager, please type in the user ID");

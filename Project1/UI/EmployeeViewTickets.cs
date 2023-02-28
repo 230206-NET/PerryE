@@ -5,11 +5,11 @@ using DataAccess;
 namespace UI;
 class EmployeeTicketView{
     int UserId {set; get;}
-    public EmployeeTicketView(User user){
+    public EmployeeTicketView(IUser user){
         this.UserId = user.UserId;
         showTickets(user);
     }
-    private void showTickets(User user){
+    private void showTickets(IUser user){
         bool returnToHome = false;
         while(!returnToHome){
             Console.WriteLine("\n");

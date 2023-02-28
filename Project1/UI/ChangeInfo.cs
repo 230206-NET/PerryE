@@ -2,7 +2,7 @@ using Models;
 using DataAccess;
 namespace UI;
 public class ChangeInfo{
-    public ChangeInfo(User user){
+    public ChangeInfo(IUser user){
         while (true){
             displayOptions(user);
             int choice;
@@ -13,7 +13,7 @@ public class ChangeInfo{
         }
 
     
-    private int makeChoice(int selection, User user){
+    private int makeChoice(int selection, IUser user){
                 switch (selection){
                     case 1:
                         ChangeName(user);
@@ -32,7 +32,7 @@ public class ChangeInfo{
                 }
 
     }
-    private void displayOptions(User user){
+    private void displayOptions(IUser user){
             Console.WriteLine("Name: " + user.FirstName + " " + user.LastName);
             Console.WriteLine("Username: " + user.UserName);
             Console.WriteLine("Phone Number: " + user.CellNumber);
@@ -44,7 +44,7 @@ public class ChangeInfo{
             Console.WriteLine("[0] Return to home screen");
 
     }
-    private void ChangeName(User user){
+    private void ChangeName(IUser user){
         bool correctInfo = false;
         while(!correctInfo){
             Console.WriteLine("Please write your first name");
@@ -76,11 +76,11 @@ public class ChangeInfo{
 
 
     }
-    private void ChangeUserName(User user){
+    private void ChangeUserName(IUser user){
         Console.WriteLine("Please enter your desired new username");
         string? username = Console.ReadLine();
         while(string.IsNullOrEmpty(username) || !checkForUsername(username)){
-            Console.WriteLine("Username empty or taken. Please try again. Press 0 to exit");
+            Console.WriteLine("IUsername empty or taken. Please try again. Press 0 to exit");
             username = Console.ReadLine();
             if (username == "0"){
                 return;
@@ -89,7 +89,7 @@ public class ChangeInfo{
         user.UserName = username;
         DBAccess.changeUserField("User_Name", user.UserId, username);
     }
-    private void ChangePhoneNumber(User user){
+    private void ChangePhoneNumber(IUser user){
         Console.WriteLine("Please enter your new Phone Number");
         string? phoneNumber = Console.ReadLine();
         while(string.IsNullOrEmpty(phoneNumber)){

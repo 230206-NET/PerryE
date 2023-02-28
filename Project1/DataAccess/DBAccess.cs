@@ -10,10 +10,10 @@ public class DBAccess
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
-        string query = "Update IUsers SET IUser_Position = 'Manager' WHERE IUser_ID = @IUserId";
+        string query = "Update Users SET User_Position = 'Manager' WHERE User_ID = @UserId";
         using (SqlCommand command = new SqlCommand(query, connection))
         {
-            command.Parameters.AddWithValue("@IUserId", id);
+            command.Parameters.AddWithValue("@UserId", id);
             command.ExecuteNonQuery();
         }
     }
@@ -24,7 +24,7 @@ public class DBAccess
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
-        string query = "SELECT IUser_ID, IUser_Name, Hashed_Password, Full_Name, Phone_Number, IUser_Position FROM IUsers WHERE IUser_Position = 'Employee'";
+        string query = "SELECT User_ID, User_Name, Hashed_Password, Full_Name, Phone_Number, User_Position FROM Users WHERE User_Position = 'Employee'";
         using (SqlCommand command = new SqlCommand(query, connection))
         {
 
@@ -50,11 +50,11 @@ public class DBAccess
     }
 
 
-    public static void CreateNewIUser(string username, string hashedPassword, string fullName, string phoneNumber){
+    public static void CreateNewUser(string username, string hashedPassword, string fullName, string phoneNumber){
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
             connection.Open();
-            string query = "INSERT INTO IUsers(IUser_Name, Hashed_Password, Full_Name, Phone_Number, IUser_Position) VALUES (@username, @hashedPassword, @fullName, @phoneNumber, 'Employee')";
+            string query = "INSERT INTO Users(User_Name, Hashed_Password, Full_Name, Phone_Number, User_Position) VALUES (@username, @hashedPassword, @fullName, @phoneNumber, 'Employee')";
             using (SqlCommand command = new SqlCommand(query, connection)){
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@hashedPassword", hashedPassword);
@@ -64,14 +64,14 @@ public class DBAccess
             }
         }
     }
-    public static IUser? GetIUserByIUsername(string username)
+    public static IUser? GetUserByUsername(string username)
 {
 
         IUser user = null;
     using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
-        string query = "SELECT IUser_ID, IUser_Name, Hashed_Password, Full_Name, Phone_Number, IUser_Position FROM IUsers WHERE IUser_Name = @username";
+        string query = "SELECT User_ID, User_Name, Hashed_Password, Full_Name, Phone_Number, User_Position FROM Users WHERE User_Name = @username";
         using (SqlCommand command = new SqlCommand(query, connection))
         {
             command.Parameters.AddWithValue("@username", username);
@@ -102,11 +102,11 @@ public class DBAccess
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
             connection.Open();
-            string query = "INSERT INTO Tickets(Ticket_Category, Ticket_Amount, Ticket_IUser_Id, Ticket_Submitter_Name, Ticket_Date, Ticket_Status) VALUES(@Category, @Amount, @IUserId, @userName, @Date, 'Pending')";
+            string query = "INSERT INTO Tickets(Ticket_Category, Ticket_Amount, Ticket_User_Id, Ticket_Submitter_Name, Ticket_Date, Ticket_Status) VALUES(@Category, @Amount, @UserId, @userName, @Date, 'Pending')";
             using (SqlCommand command = new SqlCommand(query, connection)){
                 command.Parameters.AddWithValue("@Category", description);
                 command.Parameters.AddWithValue("@Amount", amount);
-                command.Parameters.AddWithValue("@IUserId", userId);
+                command.Parameters.AddWithValue("@UserId", userId);
                 command.Parameters.AddWithValue("@userName", userName);
                 command.Parameters.AddWithValue("@Date", DateTime.Today);
                 command.ExecuteNonQuery();
@@ -114,17 +114,17 @@ public class DBAccess
         }
         return;
     }
-    public static List<Ticket> GetIUserTicketsByStatus(int userId, string status)
+    public static List<Ticket> GetUserTicketsByStatus(int userId, string status)
     {
         List<Ticket> tickets = new List<Ticket>();
 
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
             connection.Open();
-            string query = "SELECT * FROM Tickets WHERE Ticket_IUser_Id = @IUserId AND Ticket_Status = @status";
+            string query = "SELECT * FROM Tickets WHERE Ticket_User_Id = @UserId AND Ticket_Status = @status";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@IUserId", userId);
+                command.Parameters.AddWithValue("@UserId", userId);
                 command.Parameters.AddWithValue("@status", status);
 
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -221,14 +221,14 @@ public class DBAccess
         return tickets;
     }
 }
-    public static List<Ticket> GetIUserTicketsFromCategory(int userId, string category)
+    public static List<Ticket> GetUserTicketsFromCategory(int userId, string category)
     {
         List<Ticket> tickets = new List<Ticket>();
 
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
             connection.Open();
-            string query = "SELECT * FROM Tickets WHERE Ticket_Category Like @category AND Ticket_IUser_Id = @userId";
+            string query = "SELECT * FROM Tickets WHERE Ticket_Category Like @category AND Ticket_User_Id = @userId";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@category", "%" + category + "%");
@@ -252,27 +252,27 @@ public class DBAccess
         return tickets;
     }
 }
-public static void changeIUserField(string field, int id, string input){
+public static void changeUserField(string field, int id, string input){
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
     {
         connection.Open();
-        string query = "Update IUsers SET " + field + " = @NewData WHERE IUser_ID = @IUserId";
+        string query = "Update Users SET " + field + " = @NewData WHERE User_ID = @UserId";
         using (SqlCommand command = new SqlCommand(query, connection))
         {
             command.Parameters.AddWithValue("@NewData", input);
-            command.Parameters.AddWithValue("@IUserId", id);
+            command.Parameters.AddWithValue("@UserId", id);
             command.ExecuteNonQuery();
         }
     }
 }
-    public static List<Ticket> GetSpecifiedIUserTickets(int userId)
+    public static List<Ticket> GetSpecifiedUserTickets(int userId)
     {
         List<Ticket> tickets = new List<Ticket>();
 
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
         {
             connection.Open();
-            string query = "SELECT * FROM Tickets WHERE Ticket_IUser_Id = @userId";
+            string query = "SELECT * FROM Tickets WHERE Ticket_User_Id = @userId";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@userId", userId);

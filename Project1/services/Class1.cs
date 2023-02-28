@@ -5,7 +5,7 @@ public class LogInHelper
 {
     public static IUser? LogIn(string username, string password){
         if (PasswordHelper.Login(username, password)){
-            return DBAccess.GetIUserByIUsername(username);
+            return DBAccess.GetUserByUsername(username);
         } else{
             return null;
         }
