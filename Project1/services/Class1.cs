@@ -1,8 +1,14 @@
 ﻿using Models;
 using DataAccess;
 namespace services;
-public class Service
+public class LogInHelper
 {
-
+    public static User? LogIn(string username, string password){
+        if (PasswordHelper.Login(username, password)){
+            return DBAccess.GetUserByUsername(username);
+        } else{
+            return null;
+        }
+    }
 
 }

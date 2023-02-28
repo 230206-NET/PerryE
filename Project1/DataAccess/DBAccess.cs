@@ -18,45 +18,6 @@ public class DBAccess
         }
     }
     }
-    public static void ChangeName(int id, string name){
-        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
-    {
-        connection.Open();
-        string query = "Update Users SET Full_Name = @Name WHERE User_ID = @UserId";
-        using (SqlCommand command = new SqlCommand(query, connection))
-        {
-            command.Parameters.AddWithValue("@Name", name);
-            command.Parameters.AddWithValue("@UserId", id);
-            command.ExecuteNonQuery();
-        }
-    }
-    }
-        public static void ChangeUserName(int id, string newUserName){
-        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
-    {
-        connection.Open();
-        string query = "Update Users SET User_Name = @Name WHERE User_ID = @UserId";
-        using (SqlCommand command = new SqlCommand(query, connection))
-        {
-            command.Parameters.AddWithValue("@Name", newUserName);
-            command.Parameters.AddWithValue("@UserId", id);
-            command.ExecuteNonQuery();
-        }
-    }
-    }
-    public static void ChangePhoneNumber(int id, string phoneNumber){
-        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
-    {
-        connection.Open();
-        string query = "Update Users SET Phone_Number = @phoneNumber WHERE User_ID = @UserId";
-        using (SqlCommand command = new SqlCommand(query, connection))
-        {
-            command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-            command.Parameters.AddWithValue("@UserId", id);
-            command.ExecuteNonQuery();
-        }
-    }
-    }
 
     public static List<User> getEmployees(){
         List<User> userList = new List<User>();
@@ -287,6 +248,19 @@ public class DBAccess
                 }
         }
         return tickets;
+    }
+}
+public static void changeUserField(string field, int id, string input){
+        using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
+    {
+        connection.Open();
+        string query = "Update Users SET " + field + " = @NewData WHERE User_ID = @UserId";
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@NewData", input);
+            command.Parameters.AddWithValue("@UserId", id);
+            command.ExecuteNonQuery();
+        }
     }
 }
     public static List<Ticket> GetSpecifiedUserTickets(int userId)
