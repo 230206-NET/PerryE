@@ -9,16 +9,7 @@ public interface IUser
     public string CellNumber{get; set;}
     public string Role {get; set;}
 
-    public User(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
-    {
-        UserId = userId;
-        UserName = userName;
-        HashedPassword = hashedPassword;
-        FirstName = firstName;
-        LastName = lastName;
-        CellNumber = cellNumber;
-        Role = role;
-    }
+
     public void DisplayOptions();
     
 }

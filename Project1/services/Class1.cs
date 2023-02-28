@@ -3,9 +3,9 @@ using DataAccess;
 namespace services;
 public class LogInHelper
 {
-    public static User? LogIn(string username, string password){
+    public static IUser? LogIn(string username, string password){
         if (PasswordHelper.Login(username, password)){
-            return DBAccess.GetUserByUsername(username);
+            return DBAccess.GetIUserByIUsername(username);
         } else{
             return null;
         }
