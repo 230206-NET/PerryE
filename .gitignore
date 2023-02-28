@@ -3,7 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 **/Secret.cs
-**/appsettings.json
+
 # User-specific files
 *.rsuser
 *.suo
@@ -476,3 +476,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Project1/Proj1Api/appsettings.json
+Project1/Proj1Api/appsettings.json
+Project1/Proj1Api/appsettings.json

@@ -9,6 +9,7 @@ public class Employee : IUser
     public string LastName{get; set;}
     public string CellNumber{get; set;}
     public string Role {get; set;}
+    private IUser _User;
 
     public Employee(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
     {
@@ -20,6 +21,7 @@ public class Employee : IUser
         CellNumber = cellNumber;
         Role = role;
     }
+
 
     public void DisplayOptions()
     {
