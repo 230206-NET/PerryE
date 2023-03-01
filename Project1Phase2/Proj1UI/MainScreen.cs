@@ -6,7 +6,9 @@ using System.Text.Json;
 
 namespace UI;
 public class MainScreen{
-    public MainScreen(IUser user){
+    HttpClient _http;
+    public MainScreen(HttpClient http, IUser user){
+        _http = http;
         bool runProgram = true;
         while (runProgram){
         int choice;
@@ -23,7 +25,7 @@ public class MainScreen{
         switch (option){
             case "1":
                 if (user.Role == "Employee"){
-                    new EmployeeTicketView(user);
+                    new EmployeeTicketView(_http).showTickets(user);
                 }
                 if (user.Role == "Manager"){
                     new ManagerTickets(user);
@@ -31,7 +33,7 @@ public class MainScreen{
                 break;
             case "2":
                 if (user.Role == "Manager"){
-                    new EmployeeAdminScreen(user);
+                    new EmployeeAdminScreen(_http).EmployeeScreen(user);
                     break;
                 } else{
                     new SubmitTicket(user);

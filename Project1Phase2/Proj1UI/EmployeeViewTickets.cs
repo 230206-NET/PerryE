@@ -1,17 +1,18 @@
 using Serilog;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 using System.Text.Json;
 
 namespace UI;
 class EmployeeTicketView{
+    HttpClient _http;
     int UserId {set; get;}
-    public EmployeeTicketView(IUser user){
-        this.UserId = user.UserId;
-        showTickets(user);
+    public EmployeeTicketView(HttpClient http){
+        _http = http;
     }
-    private void showTickets(IUser user){
+    public async Task showTickets(IUser user){
         bool returnToHome = false;
         while(!returnToHome){
             Console.WriteLine("\n");
@@ -19,42 +20,48 @@ class EmployeeTicketView{
         string? option = Console.ReadLine();
         Console.WriteLine("\n");
         int choice;
+        string content;
+        List<Ticket> tickets;
         bool madeChoice = int.TryParse(option, out choice);
         switch (choice){
             case 1:
+                content = await _http.GetStringAsync("/users/{user.UserId}/Pending");
                 Console.WriteLine("\n");
-                        Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
-        Console.WriteLine("===========================================================");
-                foreach(Ticket ticket in DBAccess.GetUserTicketsByStatus(user.UserId, "Pending")){
+                Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+                Console.WriteLine("===========================================================");
+                foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
                     Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
 
                 break;
             case 2:
-            Console.WriteLine("\n");
-            Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
-            Console.WriteLine("===========================================================");
-                foreach(Ticket ticket in DBAccess.GetUserTicketsByStatus(user.UserId, "Approved")){
+                content = await _http.GetStringAsync("/users/{user.UserId}/Approved");
+                Console.WriteLine("\n");
+                Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+                Console.WriteLine("===========================================================");
+                foreach (Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)) {
                     Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
                 break;
             case 3:
+                content = await _http.GetStringAsync("/users/{user.UserId}/Denied");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
                 Console.WriteLine("===========================================================");
-                foreach(Ticket ticket in DBAccess.GetUserTicketsByStatus(user.UserId, "Denied")){
+                foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
                     Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
                 break;
-                case 4:
-                    Console.WriteLine("Please enter category. \n");
-                    string category = Console.ReadLine()!;
-                    Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
-                    Console.WriteLine("===========================================================");
-                    foreach(Ticket ticket in DBAccess.GetUserTicketsFromCategory(user.UserId, category)){
-                    Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
-                    }
-                    break;
+            case 4:
+                Console.WriteLine("Please enter category. \n");
+                string category = Console.ReadLine()!;
+                content = await _http.GetStringAsync("/tickets/ByContent/{user.UserId}/{category}");
+                Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
+                Console.WriteLine("===========================================================");
+                foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
+                Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
+                }
+                break;
             case 0:
                 returnToHome = true;
                 break;

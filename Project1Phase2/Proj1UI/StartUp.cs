@@ -21,10 +21,10 @@ public class StartUpScreen{
             string choice = Console.ReadLine()!;
             switch (choice){
                 case "1":
-                    new LogInScreen();
+                    new LogInScreen(_http).LogIn();
                     break;
                 case "2":
-                    new Register();
+                    new Register(_http);
                     break;
                 case "0":
                     return;

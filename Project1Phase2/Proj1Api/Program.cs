@@ -24,6 +24,7 @@ app.MapGet("/ticket", ([FromQuery] int empId) => {
     return DBAccess.GetAllUnapprovedTickets();
 }
 );
+app.MapGet("/users", () => {return DBAccess.getEmployees();});
 app.MapGet("/users/Login", ([FromBody] string username, [FromBody] string password) =>{
     if (PasswordHelper.Login(username, password)){
         IUser user = DBAccess.GetUserByUsername(username);
@@ -31,6 +32,21 @@ app.MapGet("/users/Login", ([FromBody] string username, [FromBody] string passwo
     } else{
         return null;
     }
+});
+app.MapGet("/tickets/{userId}/Pending", (int userId) =>{
+    DBAccess.GetUserTicketsByStatus(userId, "Pending");
+});
+app.MapGet("/tickets/{userId}/Approved", (int userId) =>{
+    DBAccess.GetUserTicketsByStatus(userId, "Approved");
+});
+app.MapGet("/tickets/{userId}/Denied", (int userId) =>{
+    DBAccess.GetUserTicketsByStatus(userId, "Denied");
+});
+app.MapGet("/tickets/ByCategory/{userId}/{category}", (int userId, string category) =>{
+    DBAccess.GetUserTicketsFromCategory(userId, category);
+});
+app.MapPost("/users/MakeManager/{userId}", (int userId) =>{
+    DBAccess.MakeEmployeeManager(userId);
 });
 app.MapPost("/users/register", ([FromBody] IUser user) =>{
     DBAccess.CreateNewUser(user.UserName, PasswordHelper.HashAndSaltPassword(user.HashedPassword), user.FirstName + " " + user.LastName, user.CellNumber);

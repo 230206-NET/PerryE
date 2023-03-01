@@ -14,15 +14,15 @@ public class Register
     private string phoneNumber;
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public Register(IHttpClientFactory httpClientFactory)
+    public async Task Register(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
         promptForName();
-        promptForCredentials();
+        await promptForCredentials();
         promptForPhoneNumber();
-        RegisterUser();
+        await RegisterUser();
     }
-    private async void RegisterUser()
+    private async Task RegisterUser()
 {
     var client = _httpClientFactory.CreateClient();
     var response = await client.PostAsJsonAsync("/users/register", new IUser
@@ -61,9 +61,8 @@ public class Register
         string firstName = Console.ReadLine()!;
         Console.WriteLine("Please Enter your Last Name");
         string lastName = Console.ReadLine()!;
-        fullName = firstName + " " + lastName;
     }
-    private async void promptForCredentials(){
+    private async Task promptForCredentials(){
         Console.WriteLine("Please Enter your desired Username");
         username = Console.ReadLine()!;
         while(!await checkForUsername(username)){

@@ -4,11 +4,13 @@ using Models;
 using services;
 namespace UI;
 class LogInScreen{
-    public LogInScreen(){
+    private HttpClient _http;
+    public LogInScreen(HttpClient http){
+        _http = http;
         IUser? logInInfo = getLoginInfo();
         bool loggedIn = (logInInfo != null);
         if (loggedIn){
-            new MainScreen(logInInfo);
+            new MainScreen(_http, logInInfo);
         }
         else{
             Console.WriteLine("Incorrect Credentials");
@@ -19,6 +21,9 @@ class LogInScreen{
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
-        return LogInHelper.LogIn(username, password);
+        string userContent = _http.GetStringAsync("users/Login");
+        IUser user = JsonSerializer.Deserialize<IUser>(userContent);
+        return user;
+        name, password);
     }
 }

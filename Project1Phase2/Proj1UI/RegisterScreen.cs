@@ -1,52 +1,59 @@
-using Serilog;
+using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Net.Http.Json;
-
 using System.Text.Json;
+using Models;
+
 
 namespace UI;
-public class Register{
-    private string fullName;
-    private string username;
-    private string hashedPassword;
-    private string phoneNumber;
+public class Register
+{
+    private string UserFirstName;
+    private string UserLastName;
+    private string NewUserName;
+    private string UserPassword;
+    private string UserPhoneNumber;
     private HttpClient _http;
-    public Register(){
-        _http = new HttpClient();
-        _http.BaseAddress = new Uri("http://localhost:5184/");
+
+    public Register(HttpClient http)
+    {
+        _http = http;
         promptForName();
         promptForCredentials();
         promptForPhoneNumber();
-        DBAccess.CreateNewUser(username, hashedPassword, fullName, phoneNumber);
+        RegisterUser();
     }
-    private async bool checkForUsername(string userName){
-        if (DBAccess.GetUserByUsername(userName) == null){
-        return true;
-        } else{
-            return false;   
-        }
+    private async Task RegisterUser()
+{
+    JsonContent content = JsonContent.Create<IUser>(new Employee(NewUserName, UserPassword, UserFirstName, UserLastName, UserPhoneNumber));
+    await _http.PostAsync("/users/register", content);
+    }
+
+    private async Task<bool> checkForUsername(string userName){
+        string content = await _http.GetStringAsync("/username?username={userName}");
+        List<IUser> users = JsonSerializer.Deserialize<List<IUser>>(content);
+        return users == null;
     }
     private void promptForName(){
         Console.WriteLine("Please Enter your first name");
-        string firstName = Console.ReadLine()!;
+        UserFirstName = Console.ReadLine()!;
         Console.WriteLine("Please Enter your Last Name");
-        string lastName = Console.ReadLine()!;
-        fullName = firstName + " " + lastName;
+        UserLastName = Console.ReadLine()!;
     }
-    private void promptForCredentials(){
+    private async Task promptForCredentials(){
         Console.WriteLine("Please Enter your desired Username");
-        username = Console.ReadLine()!;
-        while(!checkForUsername(username)){
+        NewUserName = Console.ReadLine()!;
+        while(!await checkForUsername(NewUserName)){
             Console.WriteLine("Username taken. Please try another username");
-            username = Console.ReadLine()!;
+            NewUserName = Console.ReadLine()!;
         }
         Console.WriteLine("Please Enter your Password"); 
-        string password = Console.ReadLine()!;
-        hashedPassword = PasswordHelper.HashAndSaltPassword(password);
+        UserPassword = Console.ReadLine()!;
 
     }
     private void promptForPhoneNumber(){
         Console.WriteLine("Please Enter your Phone Number (No parentheses, dashes or spaces)");
-        phoneNumber = Console.ReadLine()!;
+        UserPhoneNumber = Console.ReadLine()!;
     }
 }
