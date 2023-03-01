@@ -21,6 +21,15 @@ public class Employee : IUser
         CellNumber = cellNumber;
         Role = role;
     }
+        public Employee(string userName, string hashedPassword, string firstName, string lastName, string cellNumber)
+    {
+        UserName = userName;
+        HashedPassword = hashedPassword;
+        FirstName = firstName;
+        LastName = lastName;
+        CellNumber = cellNumber;
+        Role = "Employee";
+    }
 
 
     public void DisplayOptions()

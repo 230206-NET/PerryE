@@ -23,7 +23,7 @@ public class Register{
         if (DBAccess.GetUserByUsername(userName) == null){
         return true;
         } else{
-            return false;
+            return false;   
         }
     }
     private void promptForName(){
