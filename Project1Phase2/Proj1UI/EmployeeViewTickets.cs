@@ -25,7 +25,7 @@ class EmployeeTicketView{
         bool madeChoice = int.TryParse(option, out choice);
         switch (choice){
             case 1:
-                content = await _http.GetStringAsync("/users/{user.UserId}/Pending");
+                content = await _http.GetStringAsync($"/tickets/{user.UserId}/Pending");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
                 Console.WriteLine("===========================================================");
@@ -35,7 +35,7 @@ class EmployeeTicketView{
 
                 break;
             case 2:
-                content = await _http.GetStringAsync("/users/{user.UserId}/Approved");
+                content = await _http.GetStringAsync($"/tickets/{user.UserId}/Approved");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
                 Console.WriteLine("===========================================================");
@@ -44,7 +44,7 @@ class EmployeeTicketView{
                 }
                 break;
             case 3:
-                content = await _http.GetStringAsync("/users/{user.UserId}/Denied");
+                content = await _http.GetStringAsync($"/tickets/{user.UserId}/Denied");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
                 Console.WriteLine("===========================================================");
@@ -55,7 +55,7 @@ class EmployeeTicketView{
             case 4:
                 Console.WriteLine("Please enter category. \n");
                 string category = Console.ReadLine()!;
-                content = await _http.GetStringAsync("/tickets/ByContent/{user.UserId}/{category}");
+                content = await _http.GetStringAsync($"/tickets/ByContent/{user.UserId}/{category}");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
                 Console.WriteLine("===========================================================");
                 foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){

@@ -1,5 +1,5 @@
 ﻿namespace Models;
-public interface IUser
+public class IUser
 {
     public int UserId{get; set;}
     public string UserName{get;set;}
@@ -10,6 +10,5 @@ public interface IUser
     public string Role {get; set;}
 
 
-    public void DisplayOptions();
     
 }

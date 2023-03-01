@@ -7,10 +7,12 @@ using System.Text.Json;
 namespace UI;
 public class SubmitTicket{
     private HttpClient _http;
+    public SubmitTicket(HttpClient http){
+        _http = http;
+    }
 
-    public SubmitTicket(IUser user){
-        _http = new HttpClient();
-        _http.BaseAddress = new Uri("http://localhost:5184/");
+    public async Task TicketSubmission(IUser user){
+
         Console.WriteLine("Please enter the amount for your ticket");
         double ticketAmount;
         bool parseSuccess = double.TryParse(Console.ReadLine(), out ticketAmount);
@@ -18,12 +20,12 @@ public class SubmitTicket{
             Console.WriteLine("Please enter the category of ticket");
             string? category = Console.ReadLine();
             Ticket ticket = new Ticket(ticketAmount, user.UserId, user.UserName, category);
-            PublishTicket(ticket);
+            await PublishTicket(ticket);
         }else{
             Console.WriteLine("Invalid Input. Exiting Operation");
         }
     }
-    private async void PublishTicket(Ticket ticket){
+    private async Task PublishTicket(Ticket ticket){
             JsonContent newTicket = JsonContent.Create<Ticket>(ticket);
             await _http.PostAsync("newTicket", newTicket);
     }

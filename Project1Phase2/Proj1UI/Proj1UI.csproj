@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Proj1API\Models\Models.csproj" />
-    <ProjectReference Include="..\Proj1Api\services\services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

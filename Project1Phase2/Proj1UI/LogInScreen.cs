@@ -2,7 +2,6 @@ using Serilog;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net;
-using services;
 using System.Threading.Tasks;
 
 using System.Text.Json;
@@ -14,10 +13,10 @@ class LogInScreen{
         _http = http;
     }
     public async Task LogIn(){
-        IUser? logInInfo = await getLoginInfo();
+        IUser logInInfo = await getLoginInfo();
         bool loggedIn = (logInInfo != null);
         if (loggedIn){
-            new MainScreen(_http, logInInfo);
+            await new MainScreen(_http).MainScreenView(logInInfo);
         }
         else{
             Console.WriteLine("Incorrect Credentials");
@@ -28,12 +27,9 @@ class LogInScreen{
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
-        var response = await _http.GetStringAsync("users/Login?username={username}&password={password}");
-        if(!string.IsNullOrWhiteSpace(response)){
-            IUser user = JsonSerializer.Deserialize<IUser>(response);
-            return user;
-        } else{
-            return null;
-        }
+
+        IUser user = JsonSerializer.Deserialize<IUser>(await _http.GetStringAsync($"users/Login?username={username}&password={password}"));
+        return user;
+
     }
 }

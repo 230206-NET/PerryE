@@ -15,14 +15,15 @@ public class Register
     private string UserPassword;
     private string UserPhoneNumber;
     private HttpClient _http;
-
-    public Register(HttpClient http)
-    {
+    public Register(HttpClient http){
         _http = http;
+    }
+    public async Task RegisterScreen()
+    {
         promptForName();
-        promptForCredentials();
+        await promptForCredentials();
         promptForPhoneNumber();
-        RegisterUser();
+        await RegisterUser();
     }
     private async Task RegisterUser()
 {

@@ -7,8 +7,11 @@ using System.Text.Json;
 namespace UI;
 public class MainScreen{
     HttpClient _http;
-    public MainScreen(HttpClient http, IUser user){
+    public MainScreen(HttpClient http){
         _http = http;
+
+    }
+    public async Task MainScreenView(IUser user){
         bool runProgram = true;
         while (runProgram){
         int choice;
@@ -25,18 +28,18 @@ public class MainScreen{
         switch (option){
             case "1":
                 if (user.Role == "Employee"){
-                    new EmployeeTicketView(_http).showTickets(user);
+                    await new EmployeeTicketView(_http).showTickets(user);
                 }
                 if (user.Role == "Manager"){
-                    new ManagerTickets(user);
+                    await new ManagerTickets(_http).TicketView(user);
                     }
                 break;
             case "2":
                 if (user.Role == "Manager"){
-                    new EmployeeAdminScreen(_http).EmployeeScreen(user);
+                    await new EmployeeAdminScreen(_http).EmployeeScreen(user);
                     break;
                 } else{
-                    new SubmitTicket(user);
+                    await new SubmitTicket(_http).TicketSubmission(user);
                 }
                 break;
             case "3":

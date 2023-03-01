@@ -19,10 +19,11 @@ public class Ticket{
         Category = category;
     }
     public Ticket(double amount, int userId, string username, string category){
-        dateOfSubmission = DateTime.Today;
+        this.dateOfSubmission = DateTime.Today;
         this.Amount = amount;
         this.userId = userId;
         this.Username = username;
         this.Category = category;
     }
+    public Ticket(){}
 }

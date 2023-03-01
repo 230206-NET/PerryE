@@ -5,6 +5,7 @@ using System.Data;
 namespace DataAccess;
 public class DBAccess
 {
+    public DBAccess(){}
     public static void MakeEmployeeManager(int id){
         List<IUser> userList = new List<IUser>();
         using (SqlConnection connection = new SqlConnection(Secrets.getConnection()))
