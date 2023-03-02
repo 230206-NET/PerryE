@@ -19,7 +19,6 @@ public class ChangeInfo{
             else{
                 await makeChoice(choice, user);
             }
-            if(makeChoice(choice, user) == 0) return;   
         }
 
         }
@@ -76,7 +75,7 @@ public class ChangeInfo{
                 user.FirstName = firstName;
                 user.LastName = lastName;
                 string name = firstName + " " + lastName;
-                DBAccess.changeUserField("User_Name", user.UserId, name);
+                await _http.PostAsync("userInfo/name/" + user.UserId + name, null);
                 break;
             }
             else{
@@ -89,7 +88,7 @@ public class ChangeInfo{
     private async Task ChangeUserName(IUser user){
         Console.WriteLine("Please enter your desired new username");
         string? username = Console.ReadLine();
-        while(string.IsNullOrEmpty(username) || !checkForUsername(username)){
+        while(string.IsNullOrEmpty(username) || await checkForUsername(username) == false){
             Console.WriteLine("IUsername empty or taken. Please try again. Press 0 to exit");
             username = Console.ReadLine();
             if (username == "0"){
@@ -97,7 +96,7 @@ public class ChangeInfo{
             }
         }
         user.UserName = username;
-        DBAccess.changeUserField("User_Name", user.UserId, username);
+        await _http.PostAsync("userInfo/username/" + user.UserId + "/" + username, null);
     }
     private async Task ChangePhoneNumber(IUser user){
         Console.WriteLine("Please enter your new Phone Number");
@@ -107,7 +106,7 @@ public class ChangeInfo{
             phoneNumber = Console.ReadLine();
         }
         user.CellNumber = phoneNumber;
-        DBAccess.changeUserField("Phone_Number", user.UserId, phoneNumber);
+        await _http.PostAsync("userInfo/phone/" + user.UserId + phoneNumber, null);
     }
 
         private async Task<bool> checkForUsername(string userName){

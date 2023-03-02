@@ -27,7 +27,7 @@ public class Register
     }
     private async Task RegisterUser()
 {
-    JsonContent content = JsonContent.Create<IUser>(new Employee(NewUserName, UserPassword, UserFirstName, UserLastName, UserPhoneNumber));
+    JsonContent content = JsonContent.Create<IUser>(new IUser(NewUserName, UserPassword, UserFirstName, UserLastName, UserPhoneNumber, "Employee"));
     await _http.PostAsync("/users/register", content);
     }
 

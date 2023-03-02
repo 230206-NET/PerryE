@@ -11,15 +11,14 @@ public class EmployeeAdminScreen{
     public EmployeeAdminScreen(HttpClient http){
         _http = http;
     }
-public async Task EmployeeScreen(IUser user){
+public async Task EmployeeScreen(){
     while (true){
     Console.WriteLine("Welcome to the Employee Admin Screen");
     Console.WriteLine("User ID | User Full Name | User username");
     Console.WriteLine("==========================================\n");
     try{
-    string content = await _http.GetStringAsync("users");
-    List<IUser> employees = JsonSerializer.Deserialize<List<IUser>>(content);
-    foreach (IUser employee in employees){
+    string content = await _http.GetStringAsync("/allUsers");
+    foreach (IUser employee in JsonSerializer.Deserialize<List<IUser>>(content)){
         Console.WriteLine($"{employee.UserId} | {employee.FirstName} {employee.LastName} | {employee.UserName}");
     }
     } catch (Exception e){

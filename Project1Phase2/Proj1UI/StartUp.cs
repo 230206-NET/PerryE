@@ -23,11 +23,9 @@ public class StartUpScreen{
                 case "1":
                     LogInScreen login = new LogInScreen(_http);
                     await login.LogIn();
-                    Console.ReadLine();
                     break;
                 case "2":
                     await new Register(_http).RegisterScreen();
-                    Console.ReadLine();
                     break;
                 case "0":
                     return;

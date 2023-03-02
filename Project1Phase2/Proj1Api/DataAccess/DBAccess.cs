@@ -41,7 +41,7 @@ public class DBAccess
                     string userPosition = reader.GetString(5);
                     string[] name = fullName.Split(' ').Select(word => word.Trim()).ToArray();
 
-                    userList.Add(new Employee(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition));
+                    userList.Add(new IUser(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition));
                 }
             }
         }
@@ -88,11 +88,7 @@ public class DBAccess
                     string phoneNumber = reader.GetString(4);
                     string userPosition = reader.GetString(5);
                     string[] name = fullName.Split(' ').Select(word => word.Trim()).ToArray();
-                    if (userPosition == "Manager"){
-                        user = new Manager(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
-                    } else{
-                        user = new Employee(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
-                    }
+                    user = new IUser(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
                 }
             }
         }

@@ -36,14 +36,14 @@ public class MainScreen{
                 break;
             case "2":
                 if (user.Role == "Manager"){
-                    await new EmployeeAdminScreen(_http).EmployeeScreen(user);
+                    await new EmployeeAdminScreen(_http).EmployeeScreen();
                     break;
                 } else{
                     await new SubmitTicket(_http).TicketSubmission(user);
                 }
                 break;
             case "3":
-                new ChangeInfo(user);
+                await new ChangeInfo(_http).ChangeInfoScreen(user);
                 break;
             case "0":
                 runProgram = false;

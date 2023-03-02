@@ -38,7 +38,19 @@ app.MapGet("/ticket/userId/{userId}", (int userId) => {
 app.MapPost("/ticket/{ticketId}/{decision}", (int ticketId, string decision) => {
     DBAccess.DecideOnTicket(ticketId, decision);
 });
-app.MapGet("/users", () => {return DBAccess.getEmployees();});
+app.MapPost("/userInfo/username/{userId}/{newUsername}", (int userId, string newUsername) => {
+    DBAccess.changeUserField("User_Name", userId, newUsername);
+});
+app.MapPost("/userInfo/name/{userId}/{newName}", (int userId, string newName) => {
+    DBAccess.changeUserField("Full_Name", userId, newName);
+});
+app.MapPost("/userInfo/phone/{userId}/{newPhoneNumber}", (int userId, string newPhoneNumber) => {
+    DBAccess.changeUserField("Phone_Number", userId, newPhoneNumber);
+});
+app.MapGet("/allUsers", () => {
+    List<IUser> newList = DBAccess.getEmployees();
+    return newList;
+    });
 app.MapGet("/users/Login", ([FromQuery] string username, [FromQuery] string password) =>{
     if (PasswordHelper.Login(username, password)){
         IUser user = DBAccess.GetUserByUsername(username);

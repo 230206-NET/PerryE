@@ -1,7 +1,7 @@
 ﻿namespace Models;
 public class IUser
 {
-        public IUser(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
+    public IUser(int userId, string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
     {
         UserId = userId;
         UserName = userName;
@@ -10,6 +10,18 @@ public class IUser
         LastName = lastName;
         CellNumber = cellNumber;
         Role = role;
+    }
+    public IUser(string userName, string hashedPassword, string firstName, string lastName, string cellNumber, string role)
+    {
+        UserName = userName;
+        HashedPassword = hashedPassword;
+        FirstName = firstName;
+        LastName = lastName;
+        CellNumber = cellNumber;
+        Role = role;
+    }
+    public IUser(){
+        
     }
     public int UserId{get; set;}
     public string UserName{get;set;}

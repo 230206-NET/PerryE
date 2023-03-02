@@ -95,10 +95,11 @@ public static class PasswordHelper
     {
         if (VerifyPassword(password, hashedPassword))
         {
+            Console.WriteLine("true");
             return true;
         }
     }
-
+    Console.WriteLine("false");
     return false;
 }
 }
