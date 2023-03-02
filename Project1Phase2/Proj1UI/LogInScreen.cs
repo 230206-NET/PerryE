@@ -3,8 +3,10 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 using Models;
 using System.Text.Json;
+using System.Text;
 
 namespace UI;
 class LogInScreen{
@@ -27,12 +29,32 @@ class LogInScreen{
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
-        try{
-        IUser user = JsonSerializer.Deserialize<IUser>(await _http.GetStringAsync($"users/Login?username={username}&password={password}"));
-        return user;
-        } catch (Exception e){
-            return null;
-        }
+        return await LoginAsync(username, password);
 
+    }
+        public async Task<IUser> LoginAsync(string username, string password)
+    {
+        // Build the request URI with the username in the query string
+        UriBuilder uriBuilder = new UriBuilder("http://localhost:5184/users/Login");
+        var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+        query["username"] = username;
+        uriBuilder.Query = query.ToString();
+        var requestUri = uriBuilder.Uri;
+
+        // Create the request message with the password in the request body
+        var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
+        request.Content = new StringContent($"\"{password}\"", Encoding.UTF8, "application/json");
+
+        // Send the request and get the response
+        var response = await _http.SendAsync(request);
+
+        // Check if the response is successful
+        response.EnsureSuccessStatusCode();
+
+        // Read the response body as JSON and deserialize it to a User object
+        string userJson = await response.Content.ReadAsStringAsync();
+        IUser user = JsonSerializer.Deserialize<IUser>(userJson);
+
+        return user;
     }
 }

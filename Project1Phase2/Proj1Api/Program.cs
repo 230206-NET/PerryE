@@ -51,7 +51,7 @@ app.MapGet("/allUsers", () => {
     List<IUser> newList = DBAccess.getEmployees();
     return newList;
     });
-app.MapGet("/users/Login", ([FromQuery] string username, [FromQuery] string password) =>{
+app.MapPost("/users/Login", (string username, [FromBody] string password) =>{
     if (PasswordHelper.Login(username, password)){
         IUser user = DBAccess.GetUserByUsername(username);
         return user;
