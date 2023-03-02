@@ -25,6 +25,7 @@ class EmployeeTicketView{
         bool madeChoice = int.TryParse(option, out choice);
         switch (choice){
             case 1:
+                try{
                 content = await _http.GetStringAsync($"/tickets/{user.UserId}/Pending");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
@@ -33,8 +34,15 @@ class EmployeeTicketView{
                     Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
 
+                } catch (Exception e){
+                    Console.WriteLine("No tickets found");
+                } finally{
+
                 break;
+                }
+
             case 2:
+            try{
                 content = await _http.GetStringAsync($"/tickets/{user.UserId}/Approved");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
@@ -42,8 +50,13 @@ class EmployeeTicketView{
                 foreach (Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)) {
                     Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
+            } catch (Exception e){
+                Console.WriteLine("No tickets found with matching criteria");
+            }finally{
                 break;
+            }
             case 3:
+            try{
                 content = await _http.GetStringAsync($"/tickets/{user.UserId}/Denied");
                 Console.WriteLine("\n");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
@@ -51,8 +64,13 @@ class EmployeeTicketView{
                 foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
                     Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
+            } catch (Exception e){
+                Console.WriteLine("No tickets with matching criteria found");
+            }finally{
                 break;
+            }
             case 4:
+            try{
                 Console.WriteLine("Please enter category. \n");
                 string category = Console.ReadLine()!;
                 content = await _http.GetStringAsync($"/tickets/ByContent/{user.UserId}/{category}");
@@ -61,6 +79,9 @@ class EmployeeTicketView{
                 foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
                 Console.WriteLine(ticket.TicketNum + " " + ticket.dateOfSubmission.ToShortDateString() + " " + ticket.Username + " " + ticket.Category + " " + ticket.Amount + " " + ticket.status);
                 }
+            }catch (Exception e){
+                Console.WriteLine("No matching tickets found");
+            }
                 break;
             case 0:
                 returnToHome = true;

@@ -22,15 +22,22 @@ class ManagerTickets{
         if (successfulRead && choice != 0){
             switch (choice){
                 case 1:
+                try{
                     int ticketNum = await SelectTicket();
                     if (ticketNum == 0) break;
                     await ApproveOrDeny(ticketNum);
                     break;
+
+                } catch(Exception e){
+                    Console.WriteLine("Unsuccessful. Please verify input");
+                    break;
+                }
                 case 2:
                     Console.WriteLine("Please enter a user Id to search for all their tickets");
                     string userId = Console.ReadLine()!;
                     int numUserId;
                     bool userChoice = int.TryParse(userId, out numUserId);
+                    try{
                     foreach (Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(await _http.GetStringAsync($"/ticket/{numUserId}"))){
                         Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category + " | " + ticket.status);
 
@@ -46,9 +53,14 @@ class ManagerTickets{
                         await ApproveOrDeny(ticket);
                         break;
                     }
+                    } catch(Exception e){
+                        Console.WriteLine("Error. Could not perform intended action");
+                        break;
+                    }
                 case 3:
                     Console.WriteLine("Please enter the category you would like to search for");
                     string category = Console.ReadLine();
+                    try{
                     foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(await _http.GetStringAsync($"/ticket/{category}"))){
                         Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category + " | " + ticket.status);
                     }
@@ -62,6 +74,11 @@ class ManagerTickets{
                         int.TryParse(ticketNumber, out ticket);
                         await ApproveOrDeny(ticket);
                         break;
+
+                    }
+                    } catch(Exception e){
+                        Console.WriteLine("No tickets found from that category.");
+                        break;
                     }
             }
 
@@ -74,6 +91,7 @@ class ManagerTickets{
 private async Task<int> SelectTicket()
 {
     while(true){
+        try{
         string content = await _http.GetStringAsync("/ticket");
         Console.WriteLine("#  |  Username  |  Submission Date  |  Amount  |  Category");
         Console.WriteLine("===========================================================");
@@ -83,15 +101,19 @@ private async Task<int> SelectTicket()
         }
         Console.WriteLine("Please Select a ticket number to approve or deny. To exit, please enter 0");
         bool validTicket = int.TryParse(Console.ReadLine(), out ticketNum);
-        if (!validTicket) 
+        if (!validTicket || ticketNum == 0) 
         {
             if (ticketNum == 0) break;
             Console.WriteLine("Invalid Input. Please Try Again");
             continue;
         }
         return ticketNum;
+
+        } catch(Exception e){
+            Console.WriteLine("Error. Please check your input");
+            return 0;
+        }
     }
-    return 0;
 }
 
 private async Task ApproveOrDeny(int ticketNum)

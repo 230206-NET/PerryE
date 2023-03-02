@@ -19,7 +19,7 @@ class LogInScreen{
             await new MainScreen(_http).MainScreenView(logInInfo);
         }
         else{
-            Console.WriteLine("Incorrect Credentials");
+            Console.WriteLine("Incorrect Credentials or Error Retrieving Credentials. Please try again");
         }
     }
     private async Task<IUser?> getLoginInfo(){
@@ -27,9 +27,12 @@ class LogInScreen{
         string? username = Console.ReadLine()!.Trim();
         Console.WriteLine("Please enter your password");
         string? password = Console.ReadLine()!.Trim();
-
+        try{
         IUser user = JsonSerializer.Deserialize<IUser>(await _http.GetStringAsync($"users/Login?username={username}&password={password}"));
         return user;
+        } catch (Exception e){
+            return null;
+        }
 
     }
 }
