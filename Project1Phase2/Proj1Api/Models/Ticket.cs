@@ -1,3 +1,4 @@
+using DataAccess;
 namespace Models;
 public class Ticket{
     public int TicketNum{get; set;}
@@ -26,4 +27,5 @@ public class Ticket{
         this.Category = category;
     }
     public Ticket(){}
+
 }
