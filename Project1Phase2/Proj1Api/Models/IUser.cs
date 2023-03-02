@@ -11,6 +11,18 @@ public class IUser
         CellNumber = cellNumber;
         Role = role;
     }
+        public IUser(int userId, string userName, string firstName, string lastName, string cellNumber, string role)
+    {
+        UserId = userId;
+        UserName = userName;
+        FirstName = firstName;
+        LastName = lastName;
+        CellNumber = cellNumber;
+        Role = role;
+    }
+    public IUser(){
+        
+    }
     public int UserId{get; set;}
     public string UserName{get;set;}
     public string HashedPassword{get; set;}

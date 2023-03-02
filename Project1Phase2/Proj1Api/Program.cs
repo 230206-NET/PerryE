@@ -15,9 +15,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
-app.MapGet("/username", ([FromQuery] string username) =>{
-    return DBAccess.GetUserByUsername(username);
-});
+
 app.MapGet("/ticket", ([FromQuery] int? empId) => {
     if (empId != null){
         return DBAccess.GetSpecifiedUserTickets((int) empId);
