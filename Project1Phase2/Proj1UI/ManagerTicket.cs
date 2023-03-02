@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Models;
 
 namespace UI;
 class ManagerTickets{
@@ -38,7 +39,7 @@ class ManagerTickets{
                     int numUserId;
                     bool userChoice = int.TryParse(userId, out numUserId);
                     try{
-                    foreach (Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(await _http.GetStringAsync($"/ticket/{numUserId}"))){
+                    foreach (Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(await _http.GetStringAsync($"/ticket/userId/{numUserId}"))){
                         Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category + " | " + ticket.status);
 
                     }
@@ -61,7 +62,7 @@ class ManagerTickets{
                     Console.WriteLine("Please enter the category you would like to search for");
                     string category = Console.ReadLine();
                     try{
-                    foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(await _http.GetStringAsync($"/ticket/{category}"))){
+                    foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(await _http.GetStringAsync($"/ticket/category/{category}"))){
                         Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category + " | " + ticket.status);
                     }
                     Console.WriteLine("Please select a ticket to approve or deny. To exit, press 0");
@@ -103,9 +104,9 @@ private async Task<int> SelectTicket()
         bool validTicket = int.TryParse(Console.ReadLine(), out ticketNum);
         if (!validTicket || ticketNum == 0) 
         {
-            if (ticketNum == 0) break;
+            if (ticketNum == 0) return 0;
             Console.WriteLine("Invalid Input. Please Try Again");
-            continue;
+            return 0;
         }
         return ticketNum;
 

@@ -6,33 +6,39 @@ using System.Text.Json;
 
 namespace UI;
 public class ChangeInfo{
-    public ChangeInfo(IUser user){
+    HttpClient _http;
+    public ChangeInfo(HttpClient http){
+        _http = http;
+    }
+    public async Task ChangeInfoScreen(IUser user){
         while (true){
- /*           displayOptions(user);
+            displayOptions(user);
             int choice;
             bool validInput = int.TryParse(Console.ReadLine(), out choice);
+            if (choice == 0) return;
+            else{
+                await makeChoice(choice, user);
+            }
             if(makeChoice(choice, user) == 0) return;   
         }
 
         }
 
     
-    private int makeChoice(int selection, IUser user){
+    private async Task makeChoice(int selection, IUser user){
                 switch (selection){
                     case 1:
-                        ChangeName(user);
-                        return 1;
+                        await ChangeName(user);
+                        return;
                     case 2:
-                        ChangeUserName(user);
-                        return 1;
+                        await ChangeUserName(user);
+                        return;
                     case 3:
-                        ChangePhoneNumber(user);
-                        return 1;
-                    case  0:
-                        return 0;
+                        await ChangePhoneNumber(user);
+                        return;
                     default:
                         Console.WriteLine("Invalid Input. Please try again");
-                        return 1;
+                        return;
                 }
 
     }
@@ -48,7 +54,7 @@ public class ChangeInfo{
             Console.WriteLine("[0] Return to home screen");
 
     }
-    private void ChangeName(IUser user){
+    private async Task ChangeName(IUser user){
         bool correctInfo = false;
         while(!correctInfo){
             Console.WriteLine("Please write your first name");
@@ -80,7 +86,7 @@ public class ChangeInfo{
 
 
     }
-    private void ChangeUserName(IUser user){
+    private async Task ChangeUserName(IUser user){
         Console.WriteLine("Please enter your desired new username");
         string? username = Console.ReadLine();
         while(string.IsNullOrEmpty(username) || !checkForUsername(username)){
@@ -93,7 +99,7 @@ public class ChangeInfo{
         user.UserName = username;
         DBAccess.changeUserField("User_Name", user.UserId, username);
     }
-    private void ChangePhoneNumber(IUser user){
+    private async Task ChangePhoneNumber(IUser user){
         Console.WriteLine("Please enter your new Phone Number");
         string? phoneNumber = Console.ReadLine();
         while(string.IsNullOrEmpty(phoneNumber)){
@@ -103,12 +109,10 @@ public class ChangeInfo{
         user.CellNumber = phoneNumber;
         DBAccess.changeUserField("Phone_Number", user.UserId, phoneNumber);
     }
-        private bool checkForUsername(string userName){
-        if (DBAccess.GetUserByUsername(userName) == null){
-        return true;
-        } else{
-            return false;
-    }*/
-        }
-}
+
+        private async Task<bool> checkForUsername(string userName){
+        string content = await _http.GetStringAsync("/username?username={userName}");
+        List<IUser> users = JsonSerializer.Deserialize<List<IUser>>(content);
+        return users == null;
+    }
 }

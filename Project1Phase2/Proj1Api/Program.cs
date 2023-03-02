@@ -25,12 +25,12 @@ app.MapGet("/ticket", ([FromQuery] int? empId) => {
     return DBAccess.GetAllUnapprovedTickets();
 }
 );
-app.MapGet("/ticket/{category}", (string category) => {
+app.MapGet("/ticket/category/{category}", (string category) => {
     return DBAccess.GetAllTicketsFromCategory(category);
     
 }
 );
-app.MapGet("/ticket/{userId}", (int userId) => {
+app.MapGet("/ticket/userId/{userId}", (int userId) => {
     return DBAccess.GetSpecifiedUserTickets(userId);
     
 }

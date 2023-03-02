@@ -36,10 +36,7 @@ class EmployeeTicketView{
 
                 } catch (Exception e){
                     Console.WriteLine("No tickets found");
-                } finally{
-
-                break;
-                }
+                } break;
 
             case 2:
             try{
@@ -52,9 +49,9 @@ class EmployeeTicketView{
                 }
             } catch (Exception e){
                 Console.WriteLine("No tickets found with matching criteria");
-            }finally{
-                break;
             }
+                break;
+            
             case 3:
             try{
                 content = await _http.GetStringAsync($"/tickets/{user.UserId}/Denied");
@@ -66,9 +63,9 @@ class EmployeeTicketView{
                 }
             } catch (Exception e){
                 Console.WriteLine("No tickets with matching criteria found");
-            }finally{
-                break;
             }
+                break;
+            
             case 4:
             try{
                 Console.WriteLine("Please enter category. \n");
