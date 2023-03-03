@@ -20,9 +20,7 @@ public class IUser
         CellNumber = cellNumber;
         Role = role;
     }
-    public IUser(){
-        
-    }
+    public IUser(){}
     public int UserId{get; set;}
     public string UserName{get;set;}
     public string HashedPassword{get; set;}
