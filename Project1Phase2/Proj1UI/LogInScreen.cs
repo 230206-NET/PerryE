@@ -35,7 +35,7 @@ class LogInScreen{
         public async Task<IUser> LoginAsync(string username, string password)
     {
         // Build the request URI with the username in the query string
-        UriBuilder uriBuilder = new UriBuilder("http://localhost:5184/users/Login");
+        UriBuilder uriBuilder = new UriBuilder("http://localhost:5000/users/Login");
         var query = HttpUtility.ParseQueryString(uriBuilder.Query);
         query["username"] = username;
         uriBuilder.Query = query.ToString();

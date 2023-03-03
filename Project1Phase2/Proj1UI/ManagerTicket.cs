@@ -93,22 +93,40 @@ private async Task<int> SelectTicket()
 {
     while(true){
         try{
+        List<int> ticketNums = new List<int>();
         string content = await _http.GetStringAsync("/ticket");
         Console.WriteLine("#  |  Username  |  Submission Date  |  Amount  |  Category");
         Console.WriteLine("===========================================================");
         int ticketNum;
         foreach (Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
+            ticketNums.Add(ticket.TicketNum);
             Console.WriteLine("\n" + ticket.TicketNum + "  |  " +  ticket.Username +  "  |  " + ticket.dateOfSubmission.ToShortDateString() + "  |  " + ticket.Amount + "  |  " + ticket.Category);
         }
         Console.WriteLine("Please Select a ticket number to approve or deny. To exit, please enter 0");
         bool validTicket = int.TryParse(Console.ReadLine(), out ticketNum);
         if (!validTicket || ticketNum == 0) 
         {
-            if (ticketNum == 0) return 0;
             Console.WriteLine("Invalid Input. Please Try Again");
             return 0;
         }
-        return ticketNum;
+        int leftPointer = 0;
+        int rightPointer = ticketNums.Count;
+        int midPoint = rightPointer / 2;
+        while (leftPointer < rightPointer){
+            if (ticketNum < ticketNums[midPoint]){
+                rightPointer = midPoint;
+                midPoint = (rightPointer + leftPointer) / 2;
+            } else if (ticketNum > ticketNums[midPoint]){
+                leftPointer = midPoint;
+                midPoint = (rightPointer + leftPointer) / 2;
+            } else{
+                return ticketNums[midPoint];
+            }
+        }
+
+        
+        Console.WriteLine("No matching ticket found");
+        return 0;
 
         } catch(Exception e){
             Console.WriteLine("Error. Please check your input");

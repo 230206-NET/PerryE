@@ -9,7 +9,7 @@ public class StartUpScreen{
     private HttpClient _http;
     public StartUpScreen(){
         _http = new HttpClient();
-        _http.BaseAddress = new Uri("http://localhost:5184/");
+        _http.BaseAddress = new Uri("http://localhost:5000/");
     }
     public async Task StartAsync(){
         while (true){
