@@ -222,13 +222,13 @@ var assemblies = [
     "name": "DataAccess",
     "classes": [
       { "name": "DataAccess.DBAccess", "rp": "DataAccess_DBAccess.html", "cl": 0, "ucl": 250, "cal": 250, "tl": 295, "cb": 0, "tb": 14, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "DataAccess.Secrets", "rp": "DataAccess_Secrets.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 7, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "DataAccess.Secrets", "rp": "DataAccess_Secrets.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 5, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "Models",
     "classes": [
-      { "name": "Models.IUser", "rp": "Models_IUser.html", "cl": 28, "ucl": 0, "cal": 28, "tl": 36, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Models.Ticket", "rp": "Models_Ticket.html", "cl": 25, "ucl": 0, "cal": 25, "tl": 29, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Models.IUser", "rp": "Models_IUser.html", "cl": 27, "ucl": 0, "cal": 27, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Models.Ticket", "rp": "Models_Ticket.html", "cl": 25, "ucl": 0, "cal": 25, "tl": 30, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "services",

@@ -1,5 +1,6 @@
 using services;
 using Models;
+using DataAccess;
 namespace Tests;
 
 public class UnitTest1
@@ -45,5 +46,10 @@ public class UnitTest1
         Assert.Equal(newTick1.TicketNum, 1);
         Assert.Equal(newTick2.Amount, 15.50);
         Assert.NotEqual(newTick3, null);
+    }
+    [Fact]
+    public void ConnString(){
+        string ConnString = Secrets.getConnection();
+        Assert.True(!string.IsNullOrWhiteSpace(ConnString));
     }
 }

@@ -1,4 +1,3 @@
-using DataAccess;
 namespace Models;
 public class Ticket{
     public int TicketNum{get; set;}
