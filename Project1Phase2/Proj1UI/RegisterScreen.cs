@@ -32,7 +32,7 @@ public class Register
     }
 
     private async Task<bool> checkForUsername(string userName){
-        string content = await _http.GetStringAsync("/username?username={userName}");
+        string content = await _http.GetStringAsync($"/username/{userName}");
         List<IUser> users = JsonSerializer.Deserialize<List<IUser>>(content);
         return users == null;
     }

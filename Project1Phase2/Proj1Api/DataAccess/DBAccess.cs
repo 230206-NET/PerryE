@@ -35,13 +35,12 @@ public class DBAccess
                 {
                     int userId = reader.GetInt32(0);
                     string userName = reader.GetString(1);
-                    string hashedPassword = reader.GetString(2);
                     string fullName = reader.GetString(3);
                     string phoneNumber = reader.GetString(4);
                     string userPosition = reader.GetString(5);
                     string[] name = fullName.Split(' ').Select(word => word.Trim()).ToArray();
 
-                    userList.Add(new IUser(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition));
+                    userList.Add(new IUser(userId, userName, name[0], name[1], phoneNumber, userPosition));
                 }
             }
         }
@@ -83,12 +82,11 @@ public class DBAccess
                 {
                     int userId = reader.GetInt32(0);
                     string userName = reader.GetString(1);
-                    string hashedPassword = reader.GetString(2);
                     string fullName = reader.GetString(3);
                     string phoneNumber = reader.GetString(4);
                     string userPosition = reader.GetString(5);
                     string[] name = fullName.Split(' ').Select(word => word.Trim()).ToArray();
-                    user = new IUser(userId, userName, hashedPassword, name[0], name[1], phoneNumber, userPosition);
+                    user = new IUser(userId, userName, name[0], name[1], phoneNumber, userPosition);
                 }
             }
         }

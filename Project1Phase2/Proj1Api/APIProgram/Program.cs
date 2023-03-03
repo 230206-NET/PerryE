@@ -49,6 +49,10 @@ app.MapGet("/allUsers", () => {
     List<IUser> newList = DBAccess.getEmployees();
     return newList;
     });
+app.MapGet("/username/{username}", (string username) => {
+    return DBAccess.GetUserByUsername(username);
+    
+    });
 app.MapPost("/users/Login", (string username, [FromBody] string password) =>{
     if (PasswordHelper.Login(username, password)){
         IUser user = DBAccess.GetUserByUsername(username);
@@ -58,16 +62,16 @@ app.MapPost("/users/Login", (string username, [FromBody] string password) =>{
     }
 });
 app.MapGet("/tickets/{userId}/Pending", (int userId) =>{
-    DBAccess.GetUserTicketsByStatus(userId, "Pending");
+    return DBAccess.GetUserTicketsByStatus(userId, "Pending");
 });
 app.MapGet("/tickets/{userId}/Approved", (int userId) =>{
-    DBAccess.GetUserTicketsByStatus(userId, "Approved");
+    return DBAccess.GetUserTicketsByStatus(userId, "Approved");
 });
 app.MapGet("/tickets/{userId}/Denied", (int userId) =>{
-    DBAccess.GetUserTicketsByStatus(userId, "Denied");
+    return DBAccess.GetUserTicketsByStatus(userId, "Denied");
 });
 app.MapGet("/tickets/ByCategory/{userId}/{category}", (int userId, string category) =>{
-    DBAccess.GetUserTicketsFromCategory(userId, category);
+    return DBAccess.GetUserTicketsFromCategory(userId, category);
 });
 app.MapPost("/users/MakeManager/{userId}", (int userId) =>{
     DBAccess.MakeEmployeeManager(userId);

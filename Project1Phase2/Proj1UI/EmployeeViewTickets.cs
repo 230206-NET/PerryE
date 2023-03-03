@@ -2,12 +2,12 @@ using Serilog;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-
+using Models;
 using System.Text.Json;
 
 namespace UI;
 class EmployeeTicketView{
-    HttpClient _http;
+    private HttpClient _http;
     int UserId {set; get;}
     public EmployeeTicketView(HttpClient http){
         _http = http;
@@ -70,7 +70,7 @@ class EmployeeTicketView{
             try{
                 Console.WriteLine("Please enter category. \n");
                 string category = Console.ReadLine()!;
-                content = await _http.GetStringAsync($"/tickets/ByContent/{user.UserId}/{category}");
+                content = await _http.GetStringAsync($"/tickets/ByCategory/{user.UserId}/{category}");
                 Console.WriteLine("#  |  Submission Date  |  Username  |  Category  |  Amount | Status");
                 Console.WriteLine("===========================================================");
                 foreach(Ticket ticket in JsonSerializer.Deserialize<List<Ticket>>(content)){
